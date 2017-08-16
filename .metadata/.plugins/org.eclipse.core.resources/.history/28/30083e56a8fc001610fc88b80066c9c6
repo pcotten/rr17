@@ -1,0 +1,62 @@
+package junit;
+
+import java.util.List;
+
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import com.reciperex.model.Attributor;
+import com.reciperex.model.Recipe;
+import com.reciperex.model.User;
+import com.reciperex.service.IdService;
+import com.reciperex.storage.service.DatabaseManager;
+
+public class DatabaseManager_Test {
+
+	
+	static DatabaseManager dbManager;
+	static User user;
+	static Recipe recipe;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		dbManager = new DatabaseManager();
+		user = new User("John", "Doe", "jdoe@someplace.net", "mrjj123", "myPassword!");
+		recipe = new Recipe("Scrambled Eggs");
+		Attributor attributor = new Attributor("Paul", "Cotten");
+		attributor.setId(IdService.generateId("attributor"));
+		recipe.setAttributor(attributor);
+		recipe.setServings(4);
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	
+	@Test
+	public void testAddQueryDeleteUsers(){
+		dbManager.addToDatabase(user);
+		int userId = dbManager.queryMaxIdNumber("user");
+		user.setId(userId);
+		List<User> users = dbManager.queryUsers("id", "=", user.getId().toString());
+		dbManager.deleteModel("user", user.getId());
+		Assert.assertTrue("users list was empty", !users.isEmpty()) ;
+		Assert.assertTrue("user's first name was not John", users.get(0).getFirstName().equals("John"));
+	}
+	
+	@Test
+	public void testAddQueryDeleteRecipe(){
+		dbManager.addToDatabase(recipe);
+		int recipeId = dbManager.queryMaxIdNumber("recipe");
+		recipe.setId(recipeId);
+		List<Recipe> recipes = dbManager.queryRecipe("id", "=", recipe.getId().toString());
+		dbManager.deleteModel("recipe", recipe.getId());
+		Assert.assertTrue("recipe list was empty", !recipes.isEmpty()) ;
+		Assert.assertTrue("recipe first name was not John", recipes.get(0).getName().equals("Scrambled Eggs"));
+	}
+
+}

@@ -1,0 +1,97 @@
+package com.reciperex.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.reciperex.service.IdService;
+
+public class User {
+	
+	private Integer id;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String username;
+	private String password;
+	private Pantry pantry;
+	private List<Meal> meals;
+	private List<Cookbook> cookbooks;
+	
+	public User(String firstName, String lastName, String email, String username, String password) {
+		super();
+		this.id = IdService.generateId("user");
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.pantry = new Pantry(id);
+		this.meals = new ArrayList<Meal>();
+		this.cookbooks = new ArrayList<Cookbook>();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public Pantry getPantry() {
+		return pantry;
+	}
+	public void setPantry(Pantry pantry) {
+		this.pantry = pantry;
+	}
+
+	public List<Meal> getMeals() {
+		return meals;
+	}
+	public void setMeals(List<Meal> meals) {
+		this.meals = meals;
+	}
+
+	public List<Cookbook> getCookbooks() {
+		return cookbooks;
+	}
+	public void setCookbooks(List<Cookbook> cookbooks) {
+		this.cookbooks = cookbooks;
+	}
+	
+	
+}

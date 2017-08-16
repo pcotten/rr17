@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;storage&apos; to &apos;com.reciperex.storage&apos;" description="Rename resource &apos;storage&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/storage" name="com.reciperex.storage" stamp="1487911944045" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;DataModel&apos; to &apos;com.reciperex.datamodel&apos;" description="Rename resource &apos;DataModel&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/DataModel" name="com.reciperex.datamodel" stamp="1487982747106" updateReferences="true"/>
+</session>

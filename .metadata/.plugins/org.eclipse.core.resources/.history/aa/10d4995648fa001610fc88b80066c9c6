@@ -1,0 +1,14 @@
+package com.reciperex.storage.service;
+
+public class Test {
+
+	
+	
+	public static void main(String[] args) {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+		dbManager.testConnection();
+
+	}
+
+}

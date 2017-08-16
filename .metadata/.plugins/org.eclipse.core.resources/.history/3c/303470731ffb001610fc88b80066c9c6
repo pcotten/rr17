@@ -1,0 +1,5 @@
+package com.reciperex.storage.service;
+
+public class SQLBuilder {
+
+}

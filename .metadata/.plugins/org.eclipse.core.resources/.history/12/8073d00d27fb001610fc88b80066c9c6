@@ -1,0 +1,39 @@
+package com.reciperex.model;
+
+import java.util.List;
+
+import com.reciperex.service.IdService;
+
+public class MealPlan {
+
+	private Integer id;
+	private String name;
+	private List<Meal> meals;
+	
+	public MealPlan() {
+		super();
+		this.id = IdService.generateId("mealPlan");
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+		
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public List<Meal> getMeals() {
+		return meals;
+	}
+	public void setMeals(List<Meal> meals) {
+		this.meals = meals;
+	}
+	
+	
+}

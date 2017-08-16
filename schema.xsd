@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+
+	<xsd:element name="user">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="firstName" type="xsd:string"/>
+				<xsd:element name="lastName" type="xsd:string"/>
+				<xsd:element name="email" type="xsd:string"/>
+				<xsd:element name="username" type="xsd:string"/>
+				<xsd:element name="password" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="recipe">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="recipeName" type="xsd:string"/>
+				<xsd:element name="attributor" type="xsd:integer"/>
+				<xsd:element name="description" type="xsd:string"/>
+				<xsd:element name="servings" type="xsd:integer"/>
+				<xsd:element name="ovenTemp" type="xsd:integer"/>
+				<xsd:element name="instructions" type="instruction"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,56 @@
+package com.reciperex.storage.src.test.java.junit;
+
+import java.util.List;
+
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.reciperex.model.User;
+import com.reciperex.storage.service.DatabaseManager;
+
+public class DatabaseManager_Test {
+
+	
+	static DatabaseManager dbManager;
+	static User user;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		dbManager = new DatabaseManager();
+		user = new User("John", "Doe", "jdoe@someplace.net", "mrjj123", "myPassword!");
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	
+	@Test
+	public void testAddUser(){
+		
+		dbManager.addUser(user);
+	}
+	
+	@Test
+	public void testQueryUsers(){
+		
+		List<User> users = dbManager.queryUsers("userID", "=", "999");
+		Assert.assertTrue("users list was empty", !users.isEmpty()) ;
+		Assert.assertTrue("user's first name was not John", users.get(0).getFirstName() == "John");
+	}
+	
+	@Test
+	public void testDeleteUserByObject(){
+		
+		dbManager.deleteUser(user);
+	}
+	
+	@Test
+	public void testDeleteUserById(){
+		
+		dbManager.deleteUser(user.getId());
+	}
+
+}

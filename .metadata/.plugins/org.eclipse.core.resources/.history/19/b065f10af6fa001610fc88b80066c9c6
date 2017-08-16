@@ -1,0 +1,29 @@
+package junit;
+
+import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.reciperex.model.User;
+import com.reciperex.service.IdService;
+import com.reciperex.storage.service.DatabaseManager;
+
+public class IdService_Test {
+
+	DatabaseManager dbManager;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		dbManager = new DatabaseManager();
+		user = new User("John", "Doe", "jdoe@someplace.net", "mrjj123", "myPassword!");
+	}
+	
+	
+	@Test
+	public void test() {
+		dbManager
+		IdService.generateId("user");
+	}
+
+}

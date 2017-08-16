@@ -1,0 +1,20 @@
+package com.reciperex.storage.service;
+
+import com.reciperex.model.User;
+import com.reciperex.service.IdService;
+
+public class SQLBuilder {
+
+	public static String userModel(User user){
+		String sql = "INSERT INTO user VALUES (" +
+				IdService.generateId("user") + "," +
+				"'" + user.getFirstName() + "'" + "," +
+				"'" + user.getLastName() + "'" + "," +
+				"'" + user.getEmail() + "'" + "," +
+				"'" + user.getUsername() + "'" + "," +
+				"'" + user.getPassword() + "'" + ");";
+		return sql;
+	}
+	
+	
+}

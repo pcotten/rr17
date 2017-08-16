@@ -1,0 +1,30 @@
+package com.reciperex.model;
+
+import java.util.List;
+
+import com.reciperex.service.IdService;
+
+public class Meal {
+
+	private Integer id;
+	private List<Recipe> recipes;
+	
+	public Meal() {
+		super();
+		this.id = IdService.generateId("meal");
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+	
+}

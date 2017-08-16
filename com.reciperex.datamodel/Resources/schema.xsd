@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="Recipe">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element name="name" type="xsd:string"/>
+				<xsd:element name="description" type="xsd:string"/>
+				<xsd:element name="servings" type="xsd:integer"/>
+				<xsd:element name="ovenTemp" type="xsd:integer"/>
+				<xsd:element ref="xsd:Instruction" maxOccurs="unbounded"/>
+				<xsd:element ref="xsd:Image" maxOccurs="unbounded"/>
+				<xsd:element ref="xsd:Attributor"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Image">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element name="imagePath" type="xsd:string"/>
+				<xsd:element name="recipeId" type="xsd:integer"/>
+				<xsd:element name="imageText" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Attributor">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="firstName" type="xsd:string"/>
+				<xsd:element name="lastName" type="xsd:string"/>
+				<xsd:element name="userId" type="xsd:integer"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Instruction">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element name="instructionOrderIndex" type="xsd:integer"/>
+				<xsd:element name="instructionText" type="xsd:string"/>
+				<xsd:element name="recipeId" type="xsd:integer"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Category">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element name="name" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Ingredient">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element name="name" type="xsd:string"/>
+				<xsd:element name="quantity" type="xsd:string"/>
+				<xsd:element name="unitOfMeasure" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Pantry">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element name="userId" type="xsd:integer"/>
+				<xsd:element ref="xsd:Ingredient" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Cookbook">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element ref="xsd:Recipe" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Meal">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element ref="xsd:Recipe" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>	
+	<xsd:element name="MealPlan">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element ref="xsd:Meal" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+		<xsd:element name="User">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="id" type="xsd:integer"/>
+				<xsd:element name="firstName" type="xsd:string"/>
+				<xsd:element name="lastName" type="xsd:string"/>
+				<xsd:element name="email" type="xsd:string"/>
+				<xsd:element name="username" type="xsd:string"/>
+				<xsd:element name="password" type="xsd:string"/>
+				<xsd:element ref="xsd:Meal" maxOccurs="unbounded"/>
+				<xsd:element ref="xsd:Pantry" maxOccurs="1"/>
+				<xsd:element ref="xsd:Cookbook" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

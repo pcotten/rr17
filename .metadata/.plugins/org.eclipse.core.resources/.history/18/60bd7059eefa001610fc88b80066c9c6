@@ -1,0 +1,9 @@
+package com.reciperex.model;
+
+public class IdService {
+
+	public static Integer generateId(String idType){
+		//TODO
+		return 999;
+	}
+}

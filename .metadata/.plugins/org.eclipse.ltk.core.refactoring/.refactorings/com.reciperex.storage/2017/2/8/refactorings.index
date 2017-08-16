@@ -1,0 +1,10 @@
+1487903123347	Move 'storage' to 'service'
+1487903149053	Move 'storage' to 'java'
+1487903154095	Move 'service' to 'storage'
+1487903174501	Move 'DatabaseManager.java' to 'service'
+1487903263553	Move 'com' to 'java'
+1487903311301	Move 'storage' to 'reciperex'
+1487977979895	Extract method 'cleanup'
+1487982839106	Move compilation unit
+1487983991012	Move 'junit' to 'java'
+1487984023509	Delete element

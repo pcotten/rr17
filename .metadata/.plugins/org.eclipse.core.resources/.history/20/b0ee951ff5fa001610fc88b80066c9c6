@@ -1,0 +1,13 @@
+package com.reciperex.storage.src.test.java.junit;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+import com.reciperex.storage.service.DatabaseManager;
+
+@RunWith(Suite.class)
+@SuiteClasses({DatabaseManager_Test.class})
+public class AllTests {
+	
+}
