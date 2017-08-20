@@ -1,0 +1,5 @@
+package com.reciperex.model;
+
+public class Category {
+
+}

@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.reciperex.model.Category;
+import com.reciperex.model.User;
 import com.reciperex.storage.entity.CategoryService;
 import com.reciperex.storage.service.DatabaseConfig;
 import com.reciperex.storage.service.DatabaseManager;
@@ -27,49 +31,49 @@ public class CategoryServiceImpl implements CategoryService {
 		
 	}
 
-	public int insertNewCategory(String name, String description){
+	public int insertNewCategory(Category category){
 		conn = manager.getConnection();
 		int r = 0;
 		try {
 			pstmt = conn.prepareStatement("INSERT INTO category (name, description) "
 					+ "VALUES (?, ?);");
-			pstmt.setString(1, name);
-			pstmt.setString(2, description);
+			pstmt.setString(1, category.getName());
+			pstmt.setString(2, category.getDescription());
 	
 			r = pstmt.executeUpdate();
 			if (r != 0){
-				System.out.println("Category '" + name + "' successfully inserted into database");
+				System.out.println("Category '" + category.getName() + "' successfully inserted into database");
 			}
 			else {
-				System.out.println("Category '" + name + "' not created");
+				System.out.println("Category '" + category.getName() + "' not created");
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("Unable to insert category '" + name + "' into database");
+			System.out.println("Unable to insert category '" + category.getName() + "' into database");
 			e.printStackTrace();
 		}
 		return r;
 	}
 	
-	public int updateCategory(Integer id, String name, String description){
+	public int updateCategory(Category category){
 		conn = manager.getConnection();
 		int r = 0;
 		try {
 			
 			pstmt = conn.prepareStatement("UPDATE category SET name = ?, description = ? WHERE id = ?");
-			pstmt.setString(1, name);
-			pstmt.setString(2, description);
-			pstmt.setInt(3, id);
+			pstmt.setString(1, category.getName());
+			pstmt.setString(2, category.getDescription());
+			pstmt.setInt(3, category.getId());
 			
 			r = pstmt.executeUpdate();
 			if (r != 0){
-				System.out.println("Category '" + name + "' successfully updated in database");
+				System.out.println("Category '" + category.getName() + "' successfully updated in database");
 			}
 			else {
-				System.out.println("Category '" + name + "' not updated");
+				System.out.println("Category '" + category.getName() + "' not updated");
 			}
 		} catch (SQLException e){
-			System.out.println("Unable to update category '" + name + "' in database");
+			System.out.println("Unable to update category '" + category.getName() + "' in database");
 			e.printStackTrace();
 		}
 		return r;
@@ -91,5 +95,12 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		
 		return result;
+	}
+	
+	public Category getCategoryByName(String name){
+		Map<String, String> constraints = new HashMap<String, String>();
+		constraints.put("name", SQLBuilder.toSQLString(name));
+		return (Category) manager.retrieveSingleEntity(constraints, Category.class);
+
 	}
 }

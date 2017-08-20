@@ -5525,3 +5525,161 @@ org.eclipse.core.runtime.CoreException: Launch configuration Test (2) references
 2017-08-19 20:28:51,375 [Worker-833] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
 2017-08-19 20:28:51,379 [Worker-833] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-08-19 20:28:51,381 [Worker-833] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:01:01,713 [Worker-843] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:01:01,725 [Worker-843] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:01:01,734 [Worker-843] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:01:01,736 [Worker-843] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:02:50,878 [Worker-843] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:02:50,886 [Worker-843] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:02:50,892 [Worker-843] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:02:50,895 [Worker-843] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:06:31,044 [Worker-846] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:06:31,047 [Worker-846] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:06:31,049 [Worker-846] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:06:31,051 [Worker-846] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:07:07,313 [Worker-840] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:07:07,321 [Worker-840] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:07:07,325 [Worker-840] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:07:07,327 [Worker-840] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:12:31,105 [Worker-843] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:12:31,120 [Worker-843] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:12:31,127 [Worker-843] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:12:31,129 [Worker-843] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:15:21,003 [Worker-850] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:15:21,010 [Worker-850] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:15:21,014 [Worker-850] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:15:21,016 [Worker-850] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:16:36,699 [Worker-851] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:16:36,706 [Worker-851] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:16:36,709 [Worker-851] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:16:36,711 [Worker-851] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:17:09,670 [Worker-847] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:17:09,673 [Worker-847] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:17:09,675 [Worker-847] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:17:09,677 [Worker-847] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:18:10,224 [Worker-852] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:18:10,227 [Worker-852] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:18:10,229 [Worker-852] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:18:10,231 [Worker-852] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:18:54,452 [Worker-851] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:18:54,454 [Worker-851] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:18:54,457 [Worker-851] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:18:54,459 [Worker-851] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:20:34,293 [Worker-848] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:20:34,296 [Worker-848] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:20:34,298 [Worker-848] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:20:34,300 [Worker-848] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:25:14,937 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:25:14,952 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.datamodel\src\main\resources
+2017-08-19 21:25:14,955 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:25:14,957 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.datamodel\src\test\resources
+2017-08-19 21:27:36,875 [Worker-844] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:27:36,878 [Worker-844] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.datamodel\src\main\resources
+2017-08-19 21:27:36,881 [Worker-844] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:27:36,883 [Worker-844] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.datamodel\src\test\resources
+2017-08-19 21:30:16,624 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:30:16,634 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:30:16,641 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:30:16,643 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:30:59,104 [Worker-847] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:30:59,111 [Worker-847] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:30:59,115 [Worker-847] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:30:59,117 [Worker-847] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:31:02,885 [Worker-854] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:31:02,888 [Worker-854] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:31:02,890 [Worker-854] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:31:02,894 [Worker-854] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:34:09,787 [Worker-853] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:34:09,795 [Worker-853] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:34:09,802 [Worker-853] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:34:09,805 [Worker-853] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:34:24,392 [Worker-853] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:34:24,399 [Worker-853] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:34:24,413 [Worker-853] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:34:24,416 [Worker-853] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:34:30,573 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:34:30,576 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:34:30,578 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:34:30,580 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:36:18,995 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:36:18,997 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:36:19,000 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:36:19,003 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:36:36,212 [Worker-840] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:36:36,214 [Worker-840] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:36:36,216 [Worker-840] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:36:36,218 [Worker-840] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:36:59,698 [Worker-853] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:36:59,705 [Worker-853] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:36:59,708 [Worker-853] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:36:59,711 [Worker-853] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:38:49,319 [Worker-843] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:38:49,323 [Worker-843] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:38:49,326 [Worker-843] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:38:49,328 [Worker-843] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:38:57,232 [Worker-851] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:38:57,235 [Worker-851] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:38:57,237 [Worker-851] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:38:57,239 [Worker-851] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:39:24,921 [Worker-840] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:39:24,923 [Worker-840] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:39:24,925 [Worker-840] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:39:24,927 [Worker-840] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:50:14,654 [Worker-852] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:50:14,664 [Worker-852] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:50:14,672 [Worker-852] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:50:14,674 [Worker-852] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:51:32,523 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:51:32,532 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:51:32,535 [Worker-815] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:51:32,537 [Worker-815] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:52:21,660 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:52:21,672 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:52:21,675 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:52:21,677 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:52:35,295 [Worker-855] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:52:35,302 [Worker-855] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:52:35,329 [Worker-855] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:52:35,331 [Worker-855] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:55:46,110 [Worker-855] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:55:46,112 [Worker-855] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.datamodel\src\main\resources
+2017-08-19 21:55:46,117 [Worker-855] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:55:46,119 [Worker-855] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.datamodel\src\test\resources
+2017-08-19 21:55:46,246 [Worker-855] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:55:46,254 [Worker-855] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:55:46,259 [Worker-855] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:55:46,261 [Worker-855] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:56:10,309 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:56:10,311 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.datamodel\src\main\resources
+2017-08-19 21:56:10,313 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:56:10,315 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.datamodel\src\test\resources
+2017-08-19 21:56:10,396 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:56:10,405 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:56:10,410 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:56:10,421 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:57:13,983 [Worker-855] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:57:13,990 [Worker-855] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:57:13,993 [Worker-855] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:57:13,995 [Worker-855] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:57:32,871 [Worker-857] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:57:32,876 [Worker-857] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:57:32,884 [Worker-857] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:57:32,887 [Worker-857] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:57:51,563 [Worker-848] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:57:51,566 [Worker-848] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 21:57:51,568 [Worker-848] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:57:51,570 [Worker-848] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 21:59:11,579 [Worker-857] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:59:11,589 [Worker-857] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 21:59:11,594 [Worker-857] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 21:59:11,596 [Worker-857] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 22:00:41,250 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 22:00:41,253 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-19 22:00:41,255 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 22:00:41,256 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 22:03:51,058 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 22:03:51,068 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 22:03:51,075 [Worker-856] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 22:03:51,076 [Worker-856] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
+2017-08-19 22:05:20,956 [Worker-860] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 22:05:20,959 [Worker-860] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource

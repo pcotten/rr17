@@ -66,8 +66,6 @@ public class UserServiceImpl implements UserService {
 					throw new SQLException();
 				}
 				
-				
-				
 			} catch (SQLException e) {
 				System.out.println("Attempting rollback");
 				conn.rollback(savepoint);
@@ -81,25 +79,25 @@ public class UserServiceImpl implements UserService {
 		return r;
 	}
 	
-	public User insertUserEntity(User user){
+	public User insertUserEntity(User user) throws SQLException{
 
 		conn = manager.getConnection();
 		int r = 0;
-		try {
 			pstmt = conn.prepareStatement("INSERT INTO user (username, password, email, bio, "
-					+ "firstName, lastName, city, state, country, gender, pantryCode) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+					+ "firstName, lastName, age, city, state, country, gender, pantryCode) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, user.getUsername());
 			pstmt.setString(2, user.getPassword());
 			pstmt.setString(3, user.getEmail());
 			pstmt.setString(4, user.getBio());
 			pstmt.setString(5, user.getFirstName());
 			pstmt.setString(6, user.getLastName());
-			pstmt.setString(7, user.getCity());
-			pstmt.setString(8, user.getState());
-			pstmt.setString(9, user.getCountry());
-			pstmt.setString(10, user.getGender().toString());
-			pstmt.setString(11, user.getPantryCode());
+			pstmt.setInt(7,  user.getAge());
+			pstmt.setString(8, user.getCity());
+			pstmt.setString(9, user.getState());
+			pstmt.setString(10, user.getCountry());
+			pstmt.setString(11, user.getGender().toString());
+			pstmt.setString(12, user.getPantryCode());
 			
 			r = pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -114,17 +112,39 @@ public class UserServiceImpl implements UserService {
 				System.out.println("User " + user.getUsername() + " not created");
 			}
 			
-		} catch (SQLException e) {
-			System.out.println("Unable to insert " + user.getId() + " into database");
-			e.printStackTrace();
-		}
-
 		return user;
 	}
 	
-	public int updateUser(User user){
-		//TODO
-		return 0;
+	public int updateUser(User user) throws SQLException{
+		conn = manager.getConnection();
+		int r = 0;
+			pstmt = conn.prepareStatement("UPDATE user SET username = ?, password = ?, email = ?, "
+					+ "bio = ?, firstName = ?, lastName = ?, age = ?, city = ?, state = ?, country = ?, "
+					+ "gender = ?, pantryCode = ? WHERE id = ?");
+			pstmt.setString(1, user.getUsername());
+			pstmt.setString(2, user.getPassword());
+			pstmt.setString(3, user.getEmail());
+			pstmt.setString(4, user.getBio());
+			pstmt.setString(5, user.getFirstName());
+			pstmt.setString(6, user.getLastName());
+			pstmt.setInt(7, user.getAge());
+			pstmt.setString(8, user.getCity());
+			pstmt.setString(9, user.getState());
+			pstmt.setString(10, user.getCountry());
+			pstmt.setString(11, user.getGender().toString());
+			pstmt.setString(12, user.getPantryCode());
+			pstmt.setInt(13, user.getId());
+			
+			r = pstmt.executeUpdate();
+			
+			if (r != 0){
+				System.out.println("User " + user.getUsername() + " successfully updated");
+			}
+			else {
+				System.out.println("User " + user.getUsername() + " not updated");
+			}
+			
+		return r;
 	}
 	
 	public int deleteUser(Integer id) throws SQLException{

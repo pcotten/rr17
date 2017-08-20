@@ -6,12 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reciperex.model.Comment;
+import com.reciperex.model.Recipe;
 import com.reciperex.model.User;
 import com.reciperex.storage.entity.CommentService;
 import com.reciperex.storage.service.DatabaseConfig;
@@ -77,7 +81,12 @@ public class CommentServiceImpl implements CommentService {
 		pstmt.setString(1, comment.getText());
 		pstmt.setObject(2, comment.getTimestamp());
 		pstmt.setInt(3, comment.getUserId());
-		pstmt.setInt(4, comment.getParentId());
+		if (comment.getParentId() != null){
+			pstmt.setInt(4, comment.getParentId());
+		}
+		else {
+			pstmt.setNull(4, java.sql.Types.INTEGER);
+		}
 		pstmt.setInt(5, comment.getRecipeId());
 		r = pstmt.executeUpdate();
 		ResultSet rs = pstmt.getGeneratedKeys();
@@ -118,5 +127,13 @@ public class CommentServiceImpl implements CommentService {
 		}
 		
 		return result;
+	}
+
+
+	public Comment getCommentByUserIdAndTimestamp(Integer userId, LocalDate timestamp) {
+		Map<String, String> constraints = new HashMap<String, String>();
+		constraints.put("userId", userId.toString());
+		constraints.put("timestamp", timestamp.toString());
+		return (Comment) manager.retrieveSingleEntity(constraints, Comment.class);
 	}
 }

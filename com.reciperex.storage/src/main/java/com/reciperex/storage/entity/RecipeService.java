@@ -11,5 +11,7 @@ public interface RecipeService {
 	public int updateRecipe(Recipe recipe);
 	
 	public int deleteRecipe(Integer id) throws SQLException;
+
+	public Recipe getRecipeById(Integer id);
 	
 }

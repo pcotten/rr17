@@ -8,7 +8,7 @@ public interface UserService {
 
 	public int insertNewUser(User user);
 	
-	public int updateUser(User user);
+	public int updateUser(User user) throws SQLException;
 	
 	public int deleteUser(Integer id) throws SQLException;
 

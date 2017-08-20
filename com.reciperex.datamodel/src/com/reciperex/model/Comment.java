@@ -1,8 +1,8 @@
 package com.reciperex.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Comment {
@@ -14,7 +14,7 @@ public class Comment {
 	private Integer recipeId;
 	private String text;
 	private List<Integer> comments;
-	private Date timestamp;
+	private LocalDate timestamp;
 	
 	public Comment(){
 		
@@ -29,7 +29,7 @@ public class Comment {
 		this.recipeId = recipeId;
 		this.text = text;
 		this.comments = new ArrayList<Integer>();
-		this.timestamp = Calendar.getInstance().getTime();
+		this.timestamp = LocalDate.now();
 	}
 	
 	public Integer getId() {
@@ -87,11 +87,11 @@ public class Comment {
 		this.comments = comments;
 	}
 
-	public Date getTimestamp() {
+	public LocalDate getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(LocalDate timestamp) {
 		this.timestamp = timestamp;
 	}
 	

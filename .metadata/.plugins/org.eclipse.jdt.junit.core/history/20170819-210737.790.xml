@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UserService_Test" project="com.reciperex.storage" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.reciperex.storage.entity.test.UserService_Test" time="124.347">
+    <testcase name="UserService_CRUD" classname="com.reciperex.storage.entity.test.UserService_Test" time="124.347"/>
+  </testsuite>
+</testrun>

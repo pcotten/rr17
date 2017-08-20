@@ -1,7 +1,5 @@
 package com.reciperex.storage.entity.test;
 
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,14 +27,11 @@ import com.reciperex.storage.entity.RecipeService;
 import com.reciperex.storage.entity.UserService;
 import com.reciperex.storage.entity.impl.CookbookServiceImpl;
 import com.reciperex.storage.entity.impl.ImageServiceImpl;
-import com.reciperex.storage.entity.impl.IngredientServiceImpl;
-import com.reciperex.storage.entity.impl.InstructionServiceImpl;
 import com.reciperex.storage.entity.impl.MealPlanServiceImpl;
 import com.reciperex.storage.entity.impl.MealServiceImpl;
 import com.reciperex.storage.entity.impl.RecipeServiceImpl;
 import com.reciperex.storage.entity.impl.UserServiceImpl;
 import com.reciperex.storage.service.DatabaseManager;
-import com.reciperex.storage.service.SQLBuilder;
 
 public class UserService_Test {
 	
@@ -128,7 +123,7 @@ public class UserService_Test {
 		
 		user = userService.getUserByUsername(user.getUsername());
 		
-		// Set up internal references to entities (DO ALL THIS DURING UPDATE TEST)
+		// Set up internal references to entities for deletion test
 		recipeService.insertNewRecipe(recipe, user.getId());
 
 		meal.getRecipes().add(recipe.getId());
@@ -148,12 +143,19 @@ public class UserService_Test {
 		
 		// Test update operation
 		
+		user.setBio("Changed bio for testUser");
+		user.setAge(42);
+		user.setEmail("someone@somewhere.com");
+		
+		result = userService.updateUser(user);
+		Assert.assertTrue(result == 1);
+		
 		// Test delete operation
 		result = -1;
 		try {
 			result = userService.deleteUser(user.getId());
+//			result = userService.deleteUser(59);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Assert.assertTrue(result != -1);

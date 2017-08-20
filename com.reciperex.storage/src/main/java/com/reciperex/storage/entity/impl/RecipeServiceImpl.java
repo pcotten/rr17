@@ -16,6 +16,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reciperex.model.Category;
 import com.reciperex.model.Ingredient;
 import com.reciperex.model.Instruction;
 import com.reciperex.model.Recipe;
@@ -326,6 +327,13 @@ public class RecipeServiceImpl implements RecipeService{
 		}
 		
 		return result;
+	}
+
+
+	public Recipe getRecipeById(Integer id) {
+		Map<String, String> constraints = new HashMap<String, String>();
+		constraints.put("id", id.toString());
+		return (Recipe) manager.retrieveSingleEntity(constraints, Recipe.class);
 	}
 	
 	
