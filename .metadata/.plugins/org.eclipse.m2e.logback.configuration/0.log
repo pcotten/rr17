@@ -5523,3 +5523,5 @@ org.eclipse.core.runtime.CoreException: Launch configuration Test (2) references
 2017-08-19 20:28:42,825 [Worker-836] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
 2017-08-19 20:28:51,366 [Worker-833] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-08-19 20:28:51,375 [Worker-833] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2017-08-19 20:28:51,379 [Worker-833] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-19 20:28:51,381 [Worker-833] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Paul\RecipeRex\com.reciperex.storage\src\test\resources
