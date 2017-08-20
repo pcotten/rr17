@@ -1,6 +1,7 @@
 package com.reciperex.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,16 +11,20 @@ public class Recipe {
 	private Integer id;
 	private String title;
 	private String description;
-	private Integer owner;
+	private String owner;  // username of user acct that created recipe
 	private String attributedTo;
-	private Map<String, String> ingredients;  // name, quantity
-	private List<Integer> instructions;
 	private Integer numberOfServings;
 	private Integer ovenTemp;
-	private List<Integer> images;
 	private String servingSize;
 	private String cookTime;
 	private String prepTime;
+	private Integer rating;
+	private Date lastPrepared;
+	
+	private Map<String, String> ingredients;  // name, quantity
+	private Map<Integer, String> instructions; // orderIndex, text
+	private List<String> images;
+	private List<String> categories;
 
 	public Recipe(){
 		init();
@@ -33,8 +38,9 @@ public class Recipe {
 	
 	public void init(){
 		this.ingredients = new HashMap<String, String>();
-		this.instructions = new ArrayList<Integer>();
-		this.images = new ArrayList<Integer>();
+		this.instructions = new HashMap<Integer, String>();
+		this.images = new ArrayList<String>();
+		this.categories = new ArrayList<String>();
 	}
 	
 	public String getTitle() {
@@ -80,26 +86,26 @@ public class Recipe {
 		this.ingredients = ingredients;
 	}
 
-	public List<Integer> getInstructions() {
+	public Map<Integer, String> getInstructions() {
 		return instructions;
 	}
-	public void setInstructions(List<Integer> instructions) {
+	public void setInstructions(Map<Integer, String> instructions) {
 		this.instructions = instructions;
 	}
 	
-	public List<Integer> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
-	public void setImages(List<Integer> images) {
+	public void setImages(List<String> images) {
 		this.images = images;
 	}
 
 
-	public Integer getOwner() {
+	public String getOwner() {
 		return owner;
 	}
 
-	public void setOwner(Integer owner) {
+	public void setOwner(String owner) {
 		this.owner = owner;
 	}
 
@@ -141,6 +147,30 @@ public class Recipe {
 
 	public void setPrepTime(String prepTime) {
 		this.prepTime = prepTime;
+	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public Date getLastPrepared() {
+		return lastPrepared;
+	}
+
+	public void setLastPrepared(Date lastPrepared) {
+		this.lastPrepared = lastPrepared;
+	}
+
+	public List<String> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<String> categories) {
+		this.categories = categories;
 	}
 	
 	

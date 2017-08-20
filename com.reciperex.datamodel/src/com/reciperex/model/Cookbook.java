@@ -1,17 +1,21 @@
 package com.reciperex.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cookbook {
 
 	private Integer id;
-	private String name;
+	private String title;
 	private List<Integer> recipes;
 	private List<Integer> categories;
+	private Integer creatorId;
 	
 	
 	public Cookbook() {
 		super();
+		this.recipes = new ArrayList<Integer>();
+		this.categories = new ArrayList<Integer>();
 	}
 	
 	public Integer getId() {
@@ -21,11 +25,11 @@ public class Cookbook {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public List<Integer> getRecipes() {
@@ -41,6 +45,14 @@ public class Cookbook {
 
 	public void setCategories(List<Integer> categories) {
 		this.categories = categories;
+	}
+
+	public Integer getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(Integer creatorId) {
+		this.creatorId = creatorId;
 	}
 	
 	

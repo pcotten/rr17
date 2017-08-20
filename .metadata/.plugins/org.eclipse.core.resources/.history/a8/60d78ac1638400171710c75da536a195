@@ -1,0 +1,11 @@
+package com.reciperex.storage.entity;
+
+public interface ImageService {
+
+	public int insertNewImage(String name, String description);
+	
+	public int updateImage(Integer id, String name, String description);
+	
+	public int deleteImage(Integer id);
+	
+}

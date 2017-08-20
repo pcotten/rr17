@@ -1,0 +1,55 @@
+package com.reciperex.storage.entity.impl;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.json.simple.parser.JSONParser;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reciperex.model.Cookbook;
+import com.reciperex.model.User;
+import com.reciperex.storage.entity.CookbookService;
+import com.reciperex.storage.service.DatabaseConfig;
+import com.reciperex.storage.service.DatabaseManager;
+
+public class CookbookServiceImpl implements CookbookService {
+
+	DatabaseConfig config = new DatabaseConfig();
+//	QueryRunner queryRunner = new QueryRunner();
+//	ObjectMapper mapper = new ObjectMapper();
+//	JSONParser parser = new JSONParser();
+	DatabaseManager manager = new DatabaseManager();
+	
+	Connection conn = null;
+	Statement stmt = null;
+	Statement pstmt = null;
+	String sql = null;
+	
+	public CookbookServiceImpl(){
+		
+	}
+	
+	
+	public int insertNewCookbook(Cookbook cookbook, Integer userId){
+		
+		String result = null;
+		conn = manager.getConnection();
+		int r = 0;
+		
+		return r;
+	}
+
+
+	public int updateCookbook(Cookbook cookbook) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public int deleteCookbook(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

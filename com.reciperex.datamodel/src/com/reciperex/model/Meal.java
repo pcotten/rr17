@@ -1,14 +1,14 @@
 package com.reciperex.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Meal {
 
 	private Integer id;
 	private String name;
-	private List<Recipe> recipes;
-	private Date lastPrepared;
+	private List<Integer> recipes;
+	private LocalDate lastPrepared;
 	
 	public Meal(){
 		
@@ -34,19 +34,19 @@ public class Meal {
 		this.name = name;
 	}
 	
-	public List<Recipe> getRecipes() {
+	public List<Integer> getRecipes() {
 		return recipes;
 	}
 	
-	public void setRecipes(List<Recipe> recipes) {
+	public void setRecipes(List<Integer> recipes) {
 		this.recipes = recipes;
 	}
 	
-	public Date getLastPrepared() {
+	public LocalDate getLastPrepared() {
 		return lastPrepared;
 	}
 	
-	public void setLastPrepared(Date lastPrepared) {
+	public void setLastPrepared(LocalDate lastPrepared) {
 		this.lastPrepared = lastPrepared;
 	}
 	

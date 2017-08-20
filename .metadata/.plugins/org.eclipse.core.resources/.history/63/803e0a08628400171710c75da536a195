@@ -1,0 +1,13 @@
+package com.reciperex.storage.entity;
+
+import com.reciperex.model.Meal;
+
+public interface MealService {
+
+	public int insertNewMeal(Meal meal, Integer userId);
+	
+	public int updateMeal(Integer id, String name, String description);
+	
+	public int deleteMeal(Integer id);
+	
+}

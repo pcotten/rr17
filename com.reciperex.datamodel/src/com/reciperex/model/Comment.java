@@ -8,7 +8,10 @@ import java.util.List;
 public class Comment {
 
 	private Integer id;
-	private Integer user;
+	private Integer userId;
+	private String username;
+	private Integer parentId;
+	private Integer recipeId;
 	private String text;
 	private List<Integer> comments;
 	private Date timestamp;
@@ -17,10 +20,13 @@ public class Comment {
 		
 	}
 	
-	public Comment(Integer id, Integer user, String text) {
+	public Comment(Integer id, Integer userId, String username, Integer parentId, Integer recipeId, String text) {
 		super();
 		this.id = id;
-		this.user = user;
+		this.userId = userId;
+		this.username = username;
+		this.parentId = parentId;
+		this.recipeId = recipeId;
 		this.text = text;
 		this.comments = new ArrayList<Integer>();
 		this.timestamp = Calendar.getInstance().getTime();
@@ -33,12 +39,36 @@ public class Comment {
 		this.id = id;
 	}
 
-	public Integer getUser() {
-		return user;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser(Integer user) {
-		this.user = user;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
+	public Integer getRecipeId() {
+		return recipeId;
+	}
+
+	public void setRecipeId(Integer recipeId) {
+		this.recipeId = recipeId;
 	}
 
 	public String getText() {

@@ -10,7 +10,7 @@ public class User {
 	private String password;
 	private String email;
 	private String bio;
-	private Integer profilePic;
+	private Image profilePic;
 	private String firstName;
 	private String lastName;
 	private Integer age;
@@ -19,6 +19,8 @@ public class User {
 	private String state;
 	private String country;
 	private String pantryCode;
+	
+	private List<Recipe> recipes;
 	private List<MealPlan> mealPlans;
 	private List<Meal> meals;
 	private List<Cookbook> cookbooks;
@@ -28,14 +30,16 @@ public class User {
 		
 	}
 	
-	public User(String username, String password, String email, String bio, 
-			String firstName, String lastName, Integer age, Character gender, 
-			String city, String state, String country, String pantryCode) {
+	public User(Integer id, String username, String password, String email, String bio, 
+			Image profilePic, String firstName, String lastName, Integer age, 
+			Character gender, String city, String state, String country, String pantryCode) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.bio = bio;
+		this.profilePic = profilePic;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
@@ -44,6 +48,7 @@ public class User {
 		this.state = state;
 		this.country = country;
 		this.pantryCode = pantryCode;
+		this.recipes = new ArrayList<Recipe>();
 		this.meals = new ArrayList<Meal>();
 		this.mealPlans = new ArrayList<MealPlan>();
 		this.cookbooks = new ArrayList<Cookbook>();
@@ -122,11 +127,11 @@ public class User {
 		this.bio = bio;
 	}
 
-	public Integer getProfilePic() {
+	public Image getProfilePic() {
 		return profilePic;
 	}
 
-	public void setProfilePic(Integer profilePic) {
+	public void setProfilePic(Image profilePic) {
 		this.profilePic = profilePic;
 	}
 
@@ -178,6 +183,14 @@ public class User {
 		this.country = country;
 	}
 
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+
 	public List<MealPlan> getMealPlans() {
 		return mealPlans;
 	}
@@ -193,6 +206,7 @@ public class User {
 	public void setFriends(List<Integer> friends) {
 		this.friends = friends;
 	}
+
 	
 	
 }

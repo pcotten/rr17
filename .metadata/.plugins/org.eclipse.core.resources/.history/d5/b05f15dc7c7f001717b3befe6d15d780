@@ -1,0 +1,35 @@
+package com.reciperex.storage.service;
+
+import java.util.List;
+
+import org.junit.Assert;
+
+import com.reciperex.model.User;
+import com.reciperex.service.IdService;
+import com.reciperex.storage.service.DatabaseManagerOLD;
+
+public class Test {
+
+	
+	
+	public static void main(String[] args) {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+		
+		List<Object> users = dbManager.retrieveEntities("User");
+		
+		User user = (User) users.get(0);
+		System.out.println(user.getFirstName() + " " user.getLastName());
+//		dbManager.testConnection();
+		
+//		User user = new User("John", "Doe", "jdoe@someplace.net", "mrjj123", "myPassword!");
+//		
+//		dbManager.addToDatabase(user);
+//		int userId = dbManager.queryMaxIdNumber("user");
+//		user.setId(userId);
+//		List<User> users = dbManager.queryUsers("id", "=", user.getId().toString());
+//		dbManager.deleteModel("user", user.getId());	
+
+	}
+
+}

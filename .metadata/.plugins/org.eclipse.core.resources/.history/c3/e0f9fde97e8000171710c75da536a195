@@ -1,0 +1,94 @@
+package com.reciperex.storage.entity;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.lang.RandomStringUtils;
+import org.json.simple.parser.JSONParser;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reciperex.model.Pantry;
+import com.reciperex.model.User;
+import com.reciperex.storage.service.DatabaseConfig;
+import com.reciperex.storage.service.DatabaseManager;
+
+public class PantryService {
+
+	DatabaseConfig config = new DatabaseConfig();
+//	QueryRunner queryRunner = new QueryRunner();
+//	ObjectMapper mapper = new ObjectMapper();
+//	JSONParser parser = new JSONParser();
+	DatabaseManager manager = new DatabaseManager();
+	
+	Connection conn = null;
+	Statement stmt = null;
+	Statement pstmt = null;
+	String sql = null;
+	
+	public PantryService(){
+		
+	}
+	
+	
+	public int insertNewPantry(Integer userId) {
+		conn = manager.getConnection();
+		int result = 0;
+		Map<String, String> constraints = new HashMap<String, String>();
+		constraints.put("id", userId.toString());
+		User user = (User) manager.retrieveSingleEntity(constraints, User.class);
+		
+		sql = "INSERT INTO pantry (description) "
+				+ "VALUES (\"" + user.getLastName() + " family pantry\");"; 
+		
+		try {
+			conn = manager.getConnection();
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql);
+			if (result != 0){
+				System.out.println("New pantry successfully created in database");
+			}
+			else System.out.println("Pantry not created");
+			
+			if (result != 0){
+				constraints.clear();
+				constraints.put("description", user.getLastName() + " family pantry");
+				Pantry pantry = (Pantry) manager.retrieveSingleEntity(constraints, Pantry.class);
+				sql = "UPDATE user SET pantryId = " + pantry.getId() + " WHERE id = " + user.getId() + ";";
+				result = stmt.executeUpdate(sql);
+				
+				if (result != 0){
+					System.out.println("User updated with pantryId");
+				}
+				else System.out.println("User not updated.  No pantry linked to user");
+			}
+		} catch (SQLException e) {
+			System.out.println("Unable to insert pantry for " + userId + " into database");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public String generatePantryCode(){
+		String newCode = null;
+		boolean unique = true;
+		Map<String, String> constraints = new HashMap<String, String>();
+		List<Object> pantryList = manager.retrieveEntities(constraints, Pantry.class);
+		while (!unique){
+			newCode = RandomStringUtils.randomAlphanumeric(25);
+			for (Object o : pantryList){
+				Pantry p = (Pantry)o;
+				if (p.getPantryCode().equals(newCode)){
+					unique = false;
+					break;
+				}
+			}
+		}
+		return newCode;
+		
+	}
+}

@@ -1,0 +1,61 @@
+package com.reciperex.storage.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Assert;
+
+import com.reciperex.model.User;
+import com.reciperex.service.IdService;
+import com.reciperex.storage.entity.PantryService;
+import com.reciperex.storage.entity.UserService;
+import com.reciperex.storage.service.DatabaseManagerOLD;
+
+public class Test {
+
+	
+	
+	public static void main(String[] args) {
+		
+		DatabaseManager dbManager = new DatabaseManager();
+		UserService userService = new UserService();
+		
+//		Map<String, String> constraints = new HashMap<String, String>();
+//		constraints.put("user.pantryId", "2");
+//		List<Object> users = dbManager.retrieveEntities(constraints, User.class);
+//		for (Object o : users) {
+//			User user = (User) users.get(users.indexOf(o));
+//			System.out.println(user.getFirstName() + " " + user.getLastName());
+//		}
+//	}
+		
+		
+		User user = new User();
+		int result = 0;
+		
+		user.setFirstName("Angela");
+		user.setLastName("Knipe");
+		user.setAge(32);
+		user.setUsername("aknipe");
+		user.setPassword("password");
+		user.setEmail("aknipe@coppellisd.com");
+		user.setBio("Angela's bio");
+		user.setGender('M');
+		user.setCity("Corinth");
+		user.setState("TX");
+		user.setCountry("USA");
+		user.setPantryCode("atM8-KtUd");
+
+		result = userService.insertNewUser(user);
+		if (result != 0) {
+			Map<String, String> constraints = new HashMap<String, String>();
+			constraints.put("username", SQLBuilder.toSQLString(user.getUsername()));
+			user = (User) dbManager.retrieveSingleEntity(constraints, User.class);
+			System.out.println("User " + user.getUsername() + " inserted with new pantry.  PantryCode: " + user.getPantryCode());
+		}
+		
+		
+	}
+
+}

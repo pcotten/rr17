@@ -5,6 +5,7 @@ public class Image {
 	private Integer id;
 	private String imagePath;
 	private Integer recipeId;
+	private Integer userId;
 	private String imageText;
 	
 	public Image(){
@@ -44,6 +45,13 @@ public class Image {
 	}
 	public void setImageText(String imageText) {
 		this.imageText = imageText;
+	}
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	
 	

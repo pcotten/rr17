@@ -1,0 +1,5 @@
+package com.reciperex.storage.entity;
+
+public class CategoryServiceImpl {
+
+}

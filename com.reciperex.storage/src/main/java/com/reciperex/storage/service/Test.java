@@ -1,18 +1,23 @@
 package com.reciperex.storage.service;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.junit.Assert;
 
+import com.reciperex.model.Meal;
 import com.reciperex.model.Recipe;
 import com.reciperex.model.User;
-import com.reciperex.service.IdService;
+import com.reciperex.storage.entity.MealService;
 import com.reciperex.storage.entity.PantryService;
 import com.reciperex.storage.entity.RecipeService;
 import com.reciperex.storage.entity.UserService;
-import com.reciperex.storage.service.DatabaseManagerOLD;
+import com.reciperex.storage.entity.impl.RecipeServiceImpl;
+import com.reciperex.storage.entity.impl.UserServiceImpl;
 
 public class Test {
 
@@ -21,7 +26,8 @@ public class Test {
 	public static void main(String[] args) {
 		
 		DatabaseManager dbManager = new DatabaseManager();
-		UserService userService = new UserService();
+		UserService userService = new UserServiceImpl();
+		RecipeService recipeService = new RecipeServiceImpl();
 
 		
 		//RETRIEVE ENTITIES TEST
@@ -67,24 +73,48 @@ public class Test {
 //			System.out.println("Sucssessfully deleted user 35");
 //		}
 
-		Integer userId = 1;
-		Recipe recipe = new Recipe();
-		recipe.setTitle("The Best Chocolate Cake");
-		recipe.setOwner(1);
-		recipe.setDescription("This is the best chocolate cake recipe I have found to date");
-		recipe.setOvenTemp(350);
-		recipe.setAttributedTo("Unknown");
-		recipe.setNumberOfServings(12);
-		recipe.setCookTime("30 minutes");
-		recipe.setPrepTime("30 minutes");
-		recipe.getIngredients().put("salt", "1 teaspoon");
-		recipe.getIngredients().put("bakers unsweetened chocolate", "3 squares");
-		recipe.getIngredients().put("flour", "2 cups");
-		recipe.getIngredients().put("brown sugar", "2 1/4 cups");
-		recipe.getIngredients().put("water, boiling", "1 cup");
+		// CREATE RECIPE TEST
+//		Integer userId = 1;
+//		Recipe recipe = new Recipe();
+//		recipe.setTitle("The Best Chocolate Cake");
+//		recipe.setOwner("pcotten");
+//		recipe.setDescription("This is the best chocolate cake recipe I have found to date");
+//		recipe.setOvenTemp(350);
+//		recipe.setAttributedTo("Unknown");
+//		recipe.setNumberOfServings(12);
+//		recipe.setCookTime("30 minutes");
+//		recipe.setPrepTime("30 minutes");
+//		recipe.getIngredients().put("salt", "1 teaspoon");
+//		recipe.getIngredients().put("bakers unsweetened chocolate", "3 squares");
+//		recipe.getIngredients().put("flour", "2 cups");
+//		recipe.getIngredients().put("brown sugar", "2 1/4 cups");
+//		recipe.getIngredients().put("water, boiling", "1 cup");
+//		recipe.getInstructions().put(1, "Do this.");
+//		recipe.getInstructions().put(2, "Do that.");
+//		recipe.getInstructions().put(3, "Cook this.");
+//		recipe.getInstructions().put(4, "Bake that.");
+//		
+//		RecipeService recipeService = new RecipeService();
+//		recipeService.insertNewRecipe(recipe, userId);
 		
-		RecipeService recipeService = new RecipeService();
-		recipeService.insertNewRecipe(recipe, userId);
+		// CREATE MEAL TEST
+//		Integer userId = 1;
+//		Meal meal = new Meal();
+//		meal.setName("Spaghetti with salad");
+//		MealService mealService = new MealService();
+//		mealService.insertNewMeal(meal, userId);
+		
+		
+		// RETRIEVE FULL RECIPE TEST
+//		Recipe recipe = recipeService.getRecipeByRecipeId(15);
+		
+		// DELETE RECIPE
+		try {
+			recipeService.deleteRecipe(22);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

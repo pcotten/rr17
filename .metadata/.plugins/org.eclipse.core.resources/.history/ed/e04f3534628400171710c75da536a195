@@ -1,0 +1,11 @@
+package com.reciperex.storage.entity;
+
+public interface MealPlanService {
+
+	public int insertNewMealPlan(String name, String description);
+	
+	public int updateMealPlan(Integer id, String name, String description);
+	
+	public int deleteMealPlan(Integer id);
+	
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="DatabaseManager_Test (1)" project="com.reciperex.storage" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="junit.DatabaseManager_Test" time="2.128">
+    <testcase name="getSingleUser" classname="junit.DatabaseManager_Test" time="2.018"/>
+    <testcase name="checkDatabaseConnection" classname="junit.DatabaseManager_Test" time="0.011"/>
+    <testcase name="getSingleIngredient" classname="junit.DatabaseManager_Test" time="0.098"/>
+  </testsuite>
+</testrun>

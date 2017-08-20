@@ -1,0 +1,11 @@
+package com.reciperex.storage.entity;
+
+public interface PantryService {
+
+	public String insertNewPantry(String description);
+	
+	public int updatePantry(Integer id, String name, String description);
+	
+	public int deletePantry(Integer id);
+	
+}

@@ -1,0 +1,119 @@
+package com.reciperex.storage.entity.test;
+
+import static org.junit.Assert.*;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.reciperex.model.Cookbook;
+import com.reciperex.model.Image;
+import com.reciperex.model.Meal;
+import com.reciperex.model.MealPlan;
+import com.reciperex.model.Recipe;
+import com.reciperex.model.User;
+import com.reciperex.storage.entity.CookbookService;
+import com.reciperex.storage.entity.ImageService;
+import com.reciperex.storage.entity.IngredientService;
+import com.reciperex.storage.entity.InstructionService;
+import com.reciperex.storage.entity.MealPlanService;
+import com.reciperex.storage.entity.MealService;
+import com.reciperex.storage.entity.RecipeService;
+import com.reciperex.storage.entity.UserService;
+import com.reciperex.storage.entity.impl.CookbookServiceImpl;
+import com.reciperex.storage.entity.impl.ImageServiceImpl;
+import com.reciperex.storage.entity.impl.IngredientServiceImpl;
+import com.reciperex.storage.entity.impl.InstructionServiceImpl;
+import com.reciperex.storage.entity.impl.MealPlanServiceImpl;
+import com.reciperex.storage.entity.impl.MealServiceImpl;
+import com.reciperex.storage.entity.impl.RecipeServiceImpl;
+import com.reciperex.storage.entity.impl.UserServiceImpl;
+import com.reciperex.storage.service.DatabaseManager;
+
+public class UserService_Test {
+	
+	User user = new User();
+	DatabaseManager manager;
+	UserService userService;
+	RecipeService recipeService;
+	MealService mealService;
+	MealPlanService mealPlanService;
+	CookbookService cookbookService;
+	ImageService imageService;
+	InstructionService instructionService;
+	IngredientService ingredientService;
+	
+	
+	@Before
+	public void init(){
+		manager = new DatabaseManager();
+		userService = new UserServiceImpl();
+		recipeService = new RecipeServiceImpl();
+		mealService = new MealServiceImpl();
+		mealPlanService = new MealPlanServiceImpl();
+		cookbookService = new CookbookServiceImpl();
+		imageService = new ImageServiceImpl();
+		
+		user.setUsername("testUser1");
+		user.setPassword("testPass");
+		user.setFirstName("Test");
+		user.setLastName("User");
+		user.setAge(30);
+		user.setBio("Test user bio");
+		user.setEmail("testUser@reciperex.com");
+		user.setCity("Nowhere");
+		user.setState("NoState");
+		user.setCountry("NoCountry");
+		user.setGender('M');
+
+		Image profilePic = new Image();
+		profilePic.setImagePath("file:///c:/Path/To/Pic");
+		profilePic.setImageText("Profile picture text");
+		
+		Recipe recipe = new Recipe();
+		recipe.setTitle("Test Recipe");
+		recipe.setOwner("testUser1");
+		recipe.setAttributedTo("unknown");
+		recipe.setDescription("This is the best chocolate cake recipe I have found to date");
+		recipe.setOvenTemp(350);
+		recipe.setAttributedTo("Unknown");
+		recipe.setNumberOfServings(12);
+		recipe.setCookTime("30 minutes");
+		recipe.setPrepTime("30 minutes");
+		recipe.getIngredients().put("salt", "1 teaspoon");
+		recipe.getIngredients().put("bakers unsweetened chocolate", "3 squares");
+		recipe.getIngredients().put("flour", "2 cups");
+		recipe.getIngredients().put("brown sugar", "2 1/4 cups");
+		recipe.getIngredients().put("water, boiling", "1 cup");
+		recipe.getInstructions().put(1, "Do this.");
+		recipe.getInstructions().put(2, "Do that.");
+		recipe.getInstructions().put(3, "Cook this.");
+		recipe.getInstructions().put(4, "Bake that.");
+		
+		Meal meal = new Meal();
+		meal.setName("Test Meal");
+		meal.setLastPrepared(LocalDate.now());
+		meal.setRecipes(new ArrayList<Integer>());
+		
+		MealPlan mealPlan = new MealPlan();
+		mealPlan.setName("Test MealPlan");
+		mealPlan.setMeals(new ArrayList<Integer>());
+		
+		Cookbook cookbook = new Cookbook();
+		cookbook.setTitle("Test Cookbook");
+		
+	}
+	
+	@Test
+	public void UserService_CRUD() {
+		int result = 0;
+		result = userService.insertNewUser(user);
+		Assert.assertTrue(result == 1);
+		
+		user = userService.getUserByUsername(user.getUsername());
+	}
+
+}

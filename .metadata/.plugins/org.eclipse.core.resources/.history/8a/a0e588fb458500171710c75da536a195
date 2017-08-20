@@ -1,0 +1,13 @@
+package com.reciperex.storage.entity;
+
+import com.reciperex.model.Ingredient;
+
+public interface IngredientService {
+
+	public int insertNewIngredient(Ingredient ingredient);
+	
+	public int updateIngredient(Ingredient ingredient);
+	
+	public int deleteIngredient(Integer id);
+	
+}

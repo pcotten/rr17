@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;com.reciperex.db.storage&apos; to &apos;com.reciperex.storage&apos;" description="Rename resource &apos;com.reciperex.db.storage&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/com.reciperex.db.storage" name="com.reciperex.storage" stamp="1502666214985" updateReferences="true"/>
+</session>

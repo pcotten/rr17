@@ -156,7 +156,7 @@ public class DatabaseManager {
 			for (int i = 0; i < keys.length; i++){
 				sql += keys[i] + " = " + constraints.get(keys[i]);
 				if (i != keys.length - 1){
-					sql += ",";
+					sql += " AND ";
 				}
 				else sql += ";";
 			}
@@ -229,7 +229,7 @@ public class DatabaseManager {
 		return mapList;
 	}
 	
-	private String mapToJSON(Object object){
+	public String mapToJSON(Object object){
 		
 		String json = null;
 		try {

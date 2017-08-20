@@ -1,0 +1,11 @@
+package com.reciperex.storage.entity;
+
+public interface InstructionService {
+
+	public int insertNewInstruction(String name, String description);
+	
+	public int updateInstruction(Integer id, String name, String description);
+	
+	public int deleteInstruction(Integer id);
+	
+}

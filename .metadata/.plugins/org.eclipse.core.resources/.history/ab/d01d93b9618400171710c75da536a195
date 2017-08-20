@@ -1,0 +1,11 @@
+package com.reciperex.storage.entity;
+
+public interface RecipeService {
+
+	public int insertNewRecipe(String name, String description);
+	
+	public int updateRecipe(Integer id, String name, String description);
+	
+	public int deleteRecipe(Integer id);
+	
+}

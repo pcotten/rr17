@@ -11,9 +11,10 @@ public class Instruction {
 		
 	}
 	
-	public Instruction(Integer instructionOrderIndex, Integer recipeId) {
+	public Instruction(Integer orderIndex, String text, Integer recipeId) {
 		super();
-		this.orderIndex = instructionOrderIndex;
+		this.orderIndex = orderIndex;
+		this.text = text;
 		this.recipeId = recipeId;
 	}
 	
@@ -24,11 +25,11 @@ public class Instruction {
 		this.id = instructionId;
 	}
 	
-	public Integer getInstructionOrderIndex() {
+	public Integer getOrderIndex() {
 		return orderIndex;
 	}
-	public void setInstructionOrderIndex(Integer instructionOrderIndex) {
-		this.orderIndex = instructionOrderIndex;
+	public void setOrderIndex(Integer orderIndex) {
+		this.orderIndex = orderIndex;
 	}
 	
 	public String getText() {
@@ -44,6 +45,5 @@ public class Instruction {
 	public void setRecipeId(Integer recipeId) {
 		this.recipeId = recipeId;
 	}
-	
 	
 }
