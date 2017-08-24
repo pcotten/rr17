@@ -1,11 +1,12 @@
 package com.reciperex.storage.entity.test;
 
+import static org.junit.Assert.*;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,8 +33,8 @@ public class CategoryService_Test {
 		int result = 0;
 		
 		// Test create operation
-		result = categoryService.insertNewCategory(category);
-		Assert.assertTrue(result == 1);
+		category = categoryService.insertNewCategory(category);
+		assertTrue(category.getId() != null);
 		
 		category = categoryService.getCategoryByName(category.getName());
 		
@@ -42,7 +43,7 @@ public class CategoryService_Test {
 		category.setDescription("Changed description");
 		
 		result = categoryService.updateCategory(category);
-		Assert.assertTrue(result == 1);
+		assertTrue(result == 1);
 		
 		// Test delete operation
 		result = -1;
@@ -52,7 +53,7 @@ public class CategoryService_Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Assert.assertTrue(result != -1);
+		assertTrue(result != -1);
 		
 		// Check database for user
 		Connection conn = manager.getConnection();
@@ -61,7 +62,7 @@ public class CategoryService_Test {
 		String sql = "SELECT COUNT(*) FROM category WHERE id = " + category.getId();
 		ResultSet rs = stmt.executeQuery(sql);
 		rs.next();
-		Assert.assertTrue(rs.getInt("COUNT(*)") == 0);
+		assertTrue(rs.getInt("COUNT(*)") == 0);
 		
 	}
 

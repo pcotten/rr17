@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,21 +49,21 @@ public class CommentService_Test {
 	}
 	
 	@Test
-	public void CategoryService_CRUD() throws SQLException {
+	public void CommentService_CRUD() throws SQLException {
 		int result = 0;
 		
 		// Test create operation
 		result = commentService.insertNewComment(comment, user.getId());
-		Assert.assertTrue(result == 1);
+		assertTrue(result != 0);
 		
-		comment = commentService.getCommentByUserIdAndTimestamp(comment.getUserId(), comment.getTimestamp());
+		comment = commentService.getCommentById(comment.getId());
 		
 		// Test update operation
 		
 		comment.setText("Changed comment text");
 		
 		result = commentService.updateComment(comment);
-		Assert.assertTrue(result == 1);
+		assertTrue(result != -1);
 		
 		// Test delete operation
 		result = -1;
@@ -74,7 +73,7 @@ public class CommentService_Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Assert.assertTrue(result != -1);
+		assertTrue(result != -1);
 		
 		// Check database for user
 		Connection conn = manager.getConnection();
@@ -83,7 +82,7 @@ public class CommentService_Test {
 		String sql = "SELECT COUNT(*) FROM comment WHERE id = " + comment.getId();
 		ResultSet rs = stmt.executeQuery(sql);
 		rs.next();
-		Assert.assertTrue(rs.getInt("COUNT(*)") == 0);
+		assertTrue(rs.getInt("COUNT(*)") == 0);
 		
 	}
 

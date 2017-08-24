@@ -6,10 +6,12 @@ import com.reciperex.model.Ingredient;
 
 public interface IngredientService {
 
-	public int insertNewIngredient(Ingredient ingredient);
+	public Ingredient insertNewIngredient(Ingredient ingredient) throws SQLException;
 	
-	public int updateIngredient(Ingredient ingredient);
+	public int updateIngredient(Ingredient ingredient) throws SQLException;
 	
 	public int deleteIngredient(Integer id) throws SQLException;
+
+	public Ingredient getIngredientById(Integer id);
 	
 }

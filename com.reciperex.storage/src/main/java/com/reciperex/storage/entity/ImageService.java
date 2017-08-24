@@ -6,10 +6,12 @@ import com.reciperex.model.Image;
 
 public interface ImageService {
 
-	public int insertNewImage(Image image);
+	public Image insertNewImage(Image image) throws SQLException;
 	
-	public int updateImage(Image image);
+	public int updateImage(Image image) throws SQLException;
 	
 	public int deleteImage(Integer id) throws SQLException;
+
+	public Image getImageById(Integer id);
 	
 }

@@ -2,30 +2,24 @@ package com.reciperex.storage.entity.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.dbutils.QueryRunner;
-import org.json.simple.parser.JSONParser;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reciperex.model.Ingredient;
 import com.reciperex.model.Instruction;
 import com.reciperex.model.Recipe;
-import com.reciperex.model.User;
 import com.reciperex.storage.entity.InstructionService;
 import com.reciperex.storage.service.DatabaseConfig;
 import com.reciperex.storage.service.DatabaseManager;
-import com.reciperex.storage.service.SQLBuilder;
+import com.reciperex.storage.service.DbCommonFunctions;
 
 public class InstructionServiceImpl implements InstructionService{
 
 	DatabaseConfig config = new DatabaseConfig();
-//	QueryRunner queryRunner = new QueryRunner();
-//	ObjectMapper mapper = new ObjectMapper();
-//	JSONParser parser = new JSONParser();
 	DatabaseManager manager = new DatabaseManager();
 	
 	Connection conn = null;
@@ -37,45 +31,56 @@ public class InstructionServiceImpl implements InstructionService{
 		
 	}
 	
-	
-public int insertNewInstruction(Instruction instruction){
+public Instruction insertNewInstruction(Instruction instruction) throws SQLException{
 		
-		String result = null;
 		conn = manager.getConnection();
-		int r = 0;
-		try {
+		
 		pstmt = conn.prepareStatement("INSERT INTO instruction (orderIndex, text, recipeId) "
-				+ "VALUES (?, ?, ?);");
+				+ "VALUES (?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
 		pstmt.setInt(1, instruction.getOrderIndex());
 		pstmt.setString(2, instruction.getText());
 		pstmt.setInt(3, instruction.getRecipeId());
 
-			r = pstmt.executeUpdate();
-			if (r != 0){
-				result = "Instruction successfully inserted into database";
-			}
-			else result = "Instruction not created";
-			
-		} catch (SQLException e) {
-			System.out.println("Unable to insert instruction into database");
-			e.printStackTrace();
+		pstmt.executeUpdate();
+		ResultSet rs = pstmt.getGeneratedKeys();
+		if (rs.next()){
+			Integer id = Integer.valueOf(rs.getString("GENERATED_KEY"));
+			instruction.setId(id);
 		}
-		System.out.println(result);
-		return r;
+		if (instruction.getId() != null){
+			System.out.println("Instruction successfully inserted into database");
+		}
+		else {
+			System.out.println("Instruction not created");
+		}
+			
+		return instruction;
 	}
 
-	public int updateInstruction(Instruction instruction){
-		//TODO
-		return 0;
+	public int updateInstruction(Instruction instruction) throws SQLException{
+		conn = manager.getConnection();
+		int r = 0;
+
+		pstmt = conn.prepareStatement("UPDATE instruction SET orderIndex = ?, text = ?, recipeId = ? WHERE id = ?");
+		pstmt.setInt(1, instruction.getOrderIndex());
+		pstmt.setString(2, instruction.getText());
+		pstmt.setInt(3, instruction.getRecipeId());
+		pstmt.setInt(4, instruction.getId());
+
+			r = pstmt.executeUpdate();
+			if (r != 0){
+				System.out.println("Instruction successfully updated in database");
+			}
+			else {
+				System.out.println("Instruction not updated");
+			}
+			return r;
 	}
 	
 	public int deleteInstruction(Integer id) throws SQLException{
 		int result = -1;
-
-		conn = manager.getConnection();
-		pstmt = conn.prepareStatement("DELETE FROM instruction WHERE id = ?");
-		pstmt.setInt(1, id);
-		result = pstmt.executeUpdate();
+		
+		result = DbCommonFunctions.deleteEntity("instruction", id);
 		if (result != -1){
 			System.out.println("Successfully removed instruction with id " + id);
 		}
@@ -95,5 +100,13 @@ public int insertNewInstruction(Instruction instruction){
 
 		System.out.println("MapList : " + instructionMapList);
 		return instructionMapList;
+	}
+
+	public Instruction getInstructionById(Integer id) {
+		
+		Map<String, String> constraints = new HashMap<String, String>();
+		constraints.put("id", id.toString());
+		
+		return (Instruction) manager.retrieveSingleEntity(constraints, Instruction.class);
 	}
 }

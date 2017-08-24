@@ -1,5 +1,6 @@
 package com.reciperex.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MealPlan {
@@ -10,7 +11,7 @@ public class MealPlan {
 	private List<Integer> meals;
 	
 	public MealPlan(){
-		
+		meals = new ArrayList<Integer>();
 	}
 	
 	public MealPlan(String name) {

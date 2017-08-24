@@ -6,9 +6,9 @@ import com.reciperex.model.Category;
 
 public interface CategoryService {
 
-	public int insertNewCategory(Category category);
+	public Category insertNewCategory(Category category) throws SQLException;
 	
-	public int updateCategory(Category category);
+	public int updateCategory(Category category) throws SQLException;
 	
 	public int deleteCategory(Integer id) throws SQLException;
 

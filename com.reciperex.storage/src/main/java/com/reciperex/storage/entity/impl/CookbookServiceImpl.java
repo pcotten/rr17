@@ -4,25 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Savepoint;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.commons.dbutils.QueryRunner;
-import org.json.simple.parser.JSONParser;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reciperex.model.Cookbook;
-import com.reciperex.model.User;
+import com.reciperex.model.Image;
 import com.reciperex.storage.entity.CookbookService;
 import com.reciperex.storage.service.DatabaseConfig;
 import com.reciperex.storage.service.DatabaseManager;
+import com.reciperex.storage.service.DbCommonFunctions;
 
 public class CookbookServiceImpl implements CookbookService {
 
 	DatabaseConfig config = new DatabaseConfig();
-//	QueryRunner queryRunner = new QueryRunner();
-//	ObjectMapper mapper = new ObjectMapper();
-//	JSONParser parser = new JSONParser();
 	DatabaseManager manager = new DatabaseManager();
 	
 	Connection conn = null;
@@ -35,70 +30,55 @@ public class CookbookServiceImpl implements CookbookService {
 	}
 	
 	
-	public int insertNewCookbook(Cookbook cookbook, Integer userId){
-		
-		Savepoint savepoint;
+	public Cookbook insertNewCookbook(Cookbook cookbook, Integer userId) throws SQLException{
 
 		int r = 0;
-		
-		try {
-			conn = manager.getConnection();
-			savepoint = conn.setSavepoint();
-			try {
-				cookbook = insertCookbookEntity(cookbook);
-				if (cookbook.getId() != null){
-					r = 1;
-				}
-				if (r != 0){
-					System.out.println("Cookbook entity " + cookbook.getTitle() + " successfully inserted into database");
-				}
-				else {
-					System.out.println("Unable to complete cookbook insert - failed to insert cookbook entity");
-					throw new SQLException();
-				}
-								
-				r = linkRecipesToCookbook(cookbook);
-				if (r != 0){
-					System.out.println("Cookbook recipes successfully linked in database");
-				}
-				else {
-					System.out.println("Unable to complete cookbook insert - failed to link recipes");
-					throw new SQLException();
-				}
-				
-				r = linkCookbookToUser(cookbook, userId);
-				if (r != 0){
-					System.out.println("Cookbook successfully linked to user in database");
-				}
-				else {
-					System.out.println("Unable to complete cookbook insert - failed to link cookbook to user");
-					throw new SQLException();
-				}
-				
-				r = linkCookbookToCategories(cookbook);
-				if (r != 0){
-					System.out.println("Cookbook successfully linked to categories in database");
-				}
-				else {
-					System.out.println("Unable to complete cookbook insert - failed to link cookbook to categories");
-					throw new SQLException();
-				}
-				
-			} catch (SQLException e) {
-				System.out.println("Attempting rollback");
-				conn.rollback(savepoint);
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.println("Unable to perform rollback.");
-			e1.printStackTrace();
+		conn = manager.getConnection();
+		cookbook = insertCookbookEntity(cookbook);
+		if (cookbook.getId() != null){
+			r = 1;
 		}
-		return r;
+		if (r != 0){
+			System.out.println("Cookbook entity " + cookbook.getTitle() + " successfully inserted into database");
+		}
+		else {
+			System.out.println("Unable to complete cookbook insert - failed to insert cookbook entity");
+			throw new SQLException();
+		}
+						
+		r = linkRecipesToCookbook(cookbook);
+		if (r != 0){
+			System.out.println("Cookbook recipes successfully linked in database");
+		}
+		else {
+			System.out.println("Unable to complete cookbook insert - failed to link recipes");
+			throw new SQLException();
+		}
+		
+		r = linkCookbookToUser(cookbook, userId);
+		if (r != 0){
+			System.out.println("Cookbook successfully linked to user in database");
+		}
+		else {
+			System.out.println("Unable to complete cookbook insert - failed to link cookbook to user");
+			throw new SQLException();
+		}
+		
+		r = linkCookbookToCategories(cookbook);
+		if (r != 0){
+			System.out.println("Cookbook successfully linked to categories in database");
+		}
+		else {
+			System.out.println("Unable to complete cookbook insert - failed to link cookbook to categories");
+			throw new SQLException();
+		}
+				
+		return cookbook;
 	}
 
 
 	private Cookbook insertCookbookEntity(Cookbook cookbook) throws SQLException {
-		String result = null;
+
 		conn = manager.getConnection();
 		int r = 0;
 		pstmt = conn.prepareStatement("INSERT INTO cookbook (title, creatorId)"
@@ -182,19 +162,31 @@ public class CookbookServiceImpl implements CookbookService {
 	}
 
 
-	public int updateCookbook(Cookbook cookbook) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateCookbook(Cookbook cookbook) throws SQLException {
+		conn = manager.getConnection();
+		int r = 0;
+		pstmt = conn.prepareStatement("UPDATE cookbook SET title = ?, creatorId = ? WHERE id = ?");
+		pstmt.setString(1, cookbook.getTitle());
+		pstmt.setInt(2, cookbook.getCreatorId());
+		pstmt.setInt(3, cookbook.getId());
+		r = pstmt.executeUpdate();
+
+		if (r != 0 && cookbook.getId() != null){
+			System.out.println("Cookbook entity successfully updated in database");
+		}
+		else {
+			System.out.println("Cookbook update failed");
+			throw new SQLException();
+		}
+		
+		return r;
 	}
 
 
 	public int deleteCookbook(Integer id) throws SQLException {
 		int result = -1;
 
-		conn = manager.getConnection();
-		pstmt = conn.prepareStatement("DELETE FROM cookbook WHERE id = ?");
-		pstmt.setInt(1, id);
-		result = pstmt.executeUpdate();
+		result = DbCommonFunctions.deleteEntity("cookbook", id);
 		if (result != -1){
 			System.out.println("Successfully removed cookbook with id " + id);
 		}
@@ -203,5 +195,13 @@ public class CookbookServiceImpl implements CookbookService {
 		}
 		
 		return result;
+	}
+
+
+	public Cookbook getCookbookById(Integer id) {
+		Map<String, String> constraints = new HashMap<String, String>();
+		constraints.put("id", id.toString());
+		
+		return (Cookbook) manager.retrieveSingleEntity(constraints, Cookbook.class);
 	}
 }

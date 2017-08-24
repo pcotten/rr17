@@ -6,10 +6,12 @@ import com.reciperex.model.Meal;
 
 public interface MealService {
 
-	public int insertNewMeal(Meal meal, Integer userId);
+	public Meal insertNewMeal(Meal meal, Integer userId) throws SQLException;
 	
-	public int updateMeal(Meal meal);
+	public int updateMeal(Meal meal) throws SQLException;
 	
 	public int deleteMeal(Integer id) throws SQLException;
+
+	public Meal getMealById(Integer id);
 	
 }

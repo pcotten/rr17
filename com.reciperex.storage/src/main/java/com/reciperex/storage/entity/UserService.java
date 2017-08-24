@@ -6,7 +6,7 @@ import com.reciperex.model.User;
 
 public interface UserService {
 
-	public int insertNewUser(User user);
+	public User insertNewUser(User user) throws SQLException;
 	
 	public int updateUser(User user) throws SQLException;
 	

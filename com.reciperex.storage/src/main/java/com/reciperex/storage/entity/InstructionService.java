@@ -6,10 +6,12 @@ import com.reciperex.model.Instruction;
 
 public interface InstructionService {
 
-	public int insertNewInstruction(Instruction instruction);
+	public Instruction insertNewInstruction(Instruction instruction) throws SQLException;
 	
-	public int updateInstruction(Instruction instruction);
+	public int updateInstruction(Instruction instruction) throws SQLException;
 	
 	public int deleteInstruction(Integer id) throws SQLException;
+
+	public Instruction getInstructionById(Integer id);
 	
 }

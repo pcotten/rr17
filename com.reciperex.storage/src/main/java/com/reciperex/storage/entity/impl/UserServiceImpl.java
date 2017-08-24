@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,13 +12,13 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reciperex.model.Pantry;
 import com.reciperex.model.User;
-import com.reciperex.storage.entity.ImageService;
 import com.reciperex.storage.entity.PantryService;
-import com.reciperex.storage.entity.RecipeService;
 import com.reciperex.storage.entity.UserService;
 import com.reciperex.storage.service.DatabaseConfig;
 import com.reciperex.storage.service.DatabaseManager;
+import com.reciperex.storage.service.DbCommonFunctions;
 import com.reciperex.storage.service.SQLBuilder;
 
 public class UserServiceImpl implements UserService {
@@ -39,44 +38,28 @@ public class UserServiceImpl implements UserService {
 		
 	}
 	
-	public int insertNewUser(User user){
-		Savepoint savepoint;
+	public User insertNewUser(User user) throws SQLException{
 
 		int r = 0;
-		
-		try {
 			
-			if (user.getPantryCode() == null){
-				PantryService pantryService = new PantryServiceImpl();
-				user.setPantryCode(pantryService.insertNewPantry(null));
-			}
-			
-			conn = manager.getConnection();
-			savepoint = conn.setSavepoint();
-			try {
-				user = insertUserEntity(user);
-				if (user.getId() != null){
-					r = 1;
-				}
-				if (r != 0){
-					System.out.println("User entity " + user.getUsername() + " successfully inserted into database");
-				}
-				else {
-					System.out.println("Unable to complete user insert - failed to insert user entity");
-					throw new SQLException();
-				}
-				
-			} catch (SQLException e) {
-				System.out.println("Attempting rollback");
-				conn.rollback(savepoint);
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.println("Unable to perform rollback.");
-			e1.printStackTrace();
+		if (user.getPantryCode() == null){
+			PantryService pantryService = new PantryServiceImpl();
+			user.setPantryCode(pantryService.insertNewPantry(new Pantry()).getPantryCode());
+		}
+		conn = manager.getConnection();
+		user = insertUserEntity(user);
+		if (user.getId() != null){
+			r = 1;
+		}
+		if (r != 0){
+			System.out.println("User entity " + user.getUsername() + " successfully inserted into database");
+		}
+		else {
+			System.out.println("Unable to complete user insert - failed to insert user entity");
+			throw new SQLException();
 		}
 		
-		return r;
+		return user;
 	}
 	
 	public User insertUserEntity(User user) throws SQLException{
@@ -151,10 +134,7 @@ public class UserServiceImpl implements UserService {
 
 		int result = -1;
 
-		conn = manager.getConnection();
-		pstmt = conn.prepareStatement("DELETE FROM user WHERE id = ?");
-		pstmt.setInt(1, id);
-		result = pstmt.executeUpdate();
+		result = DbCommonFunctions.deleteEntity("user", id);
 		if (result != -1){
 			System.out.println("Successfully removed recipe with recipeId " + id);
 		}
@@ -167,8 +147,10 @@ public class UserServiceImpl implements UserService {
 
 	
 	public User getUserByUsername(String username){
+		
 		Map<String, String> constraints = new HashMap<String, String>();
 		constraints.put("username", SQLBuilder.toSQLString(username));
+		
 		return (User) manager.retrieveSingleEntity(constraints, User.class);
 	}
 }

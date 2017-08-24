@@ -18,10 +18,10 @@ public class Instruction {
 		this.recipeId = recipeId;
 	}
 	
-	public Integer getInstructionId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setInstructionId(Integer instructionId) {
+	public void setId(Integer instructionId) {
 		this.id = instructionId;
 	}
 	

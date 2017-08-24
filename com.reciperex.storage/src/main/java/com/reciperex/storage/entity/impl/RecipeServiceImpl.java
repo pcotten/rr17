@@ -4,27 +4,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.apache.commons.dbutils.QueryRunner;
 import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.reciperex.model.Category;
 import com.reciperex.model.Ingredient;
 import com.reciperex.model.Instruction;
 import com.reciperex.model.Recipe;
-import com.reciperex.model.User;
 import com.reciperex.storage.entity.RecipeService;
 import com.reciperex.storage.service.DatabaseConfig;
 import com.reciperex.storage.service.DatabaseManager;
-import com.reciperex.storage.service.SQLBuilder;
+import com.reciperex.storage.service.DbCommonFunctions;
 
 public class RecipeServiceImpl implements RecipeService{
 
@@ -47,78 +42,63 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 	
 	
-	public int insertNewRecipe(Recipe recipe, Integer userId){
+	public Recipe insertNewRecipe(Recipe recipe, Integer userId) throws SQLException{
 		
-		Savepoint savepoint;
 		int r = 0;
-		
-		try {
-			conn = manager.getConnection();
-			savepoint = conn.setSavepoint();
-			try {
-				recipe = insertRecipeEntity(recipe);
-				if (recipe.getId() != null){
-					r = 1;
-				}
-				if (r != 0){
-					System.out.println("Recipe entity " + recipe.getTitle() + " successfully inserted into database");
-				}
-				else {
-					System.out.println("Unable to complete recipe insert - failed to insert recipe entity");
-					throw new SQLException();
-				}
-				
-				r = linkRecipeToUser(recipe, userId);
-				if (r != 0){
-					System.out.println("Recipe  " + recipe.getTitle() + " successfully linked to user " + userId);
-				}
-				else {
-					System.out.println("Unable to complete recipe insert - failed to link recipe to user");
-					throw new SQLException();
-				}
-								
-				r = insertRecipeIngredients(recipe);
-				if (r != 0){
-					System.out.println("Recipe ingredients successfully inserted into database");
-				}
-				else {
-					System.out.println("Unable to complete recipe insert - failed to insert ingredients");
-					throw new SQLException();
-				}
-								
-				r = linkIngredientsToRecipe(recipe);
-				if (r != 0){
-					System.out.println("Recipe ingredients successfully linked in database");
-				}
-				else {
-					System.out.println("Unable to complete recipe insert - failed to link ingredients");
-					throw new SQLException();
-				}
-				
-				r = insertRecipeInstructions(recipe);
-				if (r != 0){
-					System.out.println("Recipe instructions successfully inserted in database");
-				}
-				else {
-					System.out.println("Unable to complete recipe insert - failed to insert instructions");
-					throw new SQLException();
-				}
-				
-				// insert categories
-				// link categories to recipe
-				// insert images
-				
-				
-			} catch (SQLException e) {
-				System.out.println("Attempting rollback");
-//				conn.rollback(savepoint);
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.println("Unable to perform rollback.");
-			e1.printStackTrace();
+		conn = manager.getConnection();
+		recipe = insertRecipeEntity(recipe);
+		if (recipe.getId() != null){
+			r = 1;
 		}
-		return r;
+		if (r != 0){
+			System.out.println("Recipe entity " + recipe.getTitle() + " successfully inserted into database");
+		}
+		else {
+			System.out.println("Unable to complete recipe insert - failed to insert recipe entity");
+			throw new SQLException();
+		}
+		
+		r = linkRecipeToUser(recipe, userId);
+		if (r != 0){
+			System.out.println("Recipe  " + recipe.getTitle() + " successfully linked to user " + userId);
+		}
+		else {
+			System.out.println("Unable to complete recipe insert - failed to link recipe to user");
+			throw new SQLException();
+		}
+						
+		r = insertRecipeIngredients(recipe);
+		if (r != 0){
+			System.out.println("Recipe ingredients successfully inserted into database");
+		}
+		else {
+			System.out.println("Unable to complete recipe insert - failed to insert ingredients");
+			throw new SQLException();
+		}
+						
+		r = linkIngredientsToRecipe(recipe);
+		if (r != 0){
+			System.out.println("Recipe ingredients successfully linked in database");
+		}
+		else {
+			System.out.println("Unable to complete recipe insert - failed to link ingredients");
+			throw new SQLException();
+		}
+		
+		r = insertRecipeInstructions(recipe);
+		if (r != 0){
+			System.out.println("Recipe instructions successfully inserted in database");
+		}
+		else {
+			System.out.println("Unable to complete recipe insert - failed to insert instructions");
+			throw new SQLException();
+		}
+		
+		// insert categories
+		// link categories to recipe
+		// insert images
+				
+		return recipe;
 	}
 
 
@@ -163,8 +143,8 @@ public class RecipeServiceImpl implements RecipeService{
 			}
 			if (!exists){
 				Ingredient newIngredient = new Ingredient(s, null);
-				int insertResult = ingredientService.insertNewIngredient(newIngredient);
-				if (insertResult != 1){
+				newIngredient = ingredientService.insertNewIngredient(newIngredient);
+				if (newIngredient.getId() == null){
 					System.out.println("Ingredient " + s + "could not be added to database.");
 					throw new SQLException();
 				}
@@ -213,12 +193,14 @@ public class RecipeServiceImpl implements RecipeService{
 		for (Integer i : recipe.getInstructions().keySet()){
 
 			Instruction newInstruction = new Instruction(i, recipe.getInstructions().get(i), recipe.getId());
-			r = instructionService.insertNewInstruction(newInstruction);
-			if (r != 1){
-				System.out.println("Instruction " + i + "could not be added to database.");
+			newInstruction = instructionService.insertNewInstruction(newInstruction);
+			if (newInstruction.getId() == null){
+				System.out.println("Instruction " + i + " could not be added to database.");
 				throw new SQLException();
 			}
+			r = 1;
 		}
+
 		return r;
 	}
 	
@@ -305,9 +287,26 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipe;
 	}
 	
-	public int updateRecipe(Recipe recipe){
-		// TODO - pain in the butt method for updating recipe components in the DB
-		return 0;
+	public int updateRecipe(Recipe recipe) throws SQLException{
+		
+		int r = 0;
+		
+		pstmt = conn.prepareStatement("UPDATE recipe SET title = ?, description = ?, owner = ?, attributedTo = ?, "
+				+ "numberOfServings = ?, ovenTemp = ?, servingSize = ?, cookTime = ?, prepTime = ? WHERE id = ?");
+		pstmt.setString(1, recipe.getTitle());
+		pstmt.setString(2, recipe.getDescription());
+		pstmt.setString(3, recipe.getOwner());
+		pstmt.setString(4, recipe.getAttributedTo());
+		pstmt.setInt(5, recipe.getNumberOfServings());
+		pstmt.setInt(6, recipe.getOvenTemp());
+		pstmt.setString(7, recipe.getServingSize());
+		pstmt.setString(8, recipe.getCookTime());
+		pstmt.setString(9, recipe.getPrepTime());
+		pstmt.setInt(10, recipe.getId());
+		
+		r = pstmt.executeUpdate();
+		
+		return r;
 	}
 	
 	//
@@ -315,10 +314,7 @@ public class RecipeServiceImpl implements RecipeService{
 		
 		int result = -1;
 
-		conn = manager.getConnection();
-		pstmt = conn.prepareStatement("DELETE FROM recipe WHERE id = ?");
-		pstmt.setInt(1, id);
-		result = pstmt.executeUpdate();
+		result = DbCommonFunctions.deleteEntity("recipe", id);
 		if (result != -1){
 			System.out.println("Successfully removed recipe with recipeId " + id);
 		}

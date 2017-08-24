@@ -2,8 +2,10 @@ package com.reciperex.storage.entity.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,14 +14,12 @@ import com.reciperex.model.Recipe;
 import com.reciperex.storage.entity.IngredientService;
 import com.reciperex.storage.service.DatabaseConfig;
 import com.reciperex.storage.service.DatabaseManager;
+import com.reciperex.storage.service.DbCommonFunctions;
 import com.reciperex.storage.service.SQLBuilder;
 
 public class IngredientServiceImpl implements IngredientService {
 
 	DatabaseConfig config = new DatabaseConfig();
-//	QueryRunner queryRunner = new QueryRunner();
-//	ObjectMapper mapper = new ObjectMapper();
-//	JSONParser parser = new JSONParser();
 	DatabaseManager manager = new DatabaseManager();
 	
 	Connection conn = null;
@@ -32,30 +32,30 @@ public class IngredientServiceImpl implements IngredientService {
 	}
 	
 	
-	public int insertNewIngredient(Ingredient ingredient){
+	public Ingredient insertNewIngredient(Ingredient ingredient) throws SQLException{
 		
-		String result = null;
 		conn = manager.getConnection();
 		int r = 0;
-		try {
+
 		pstmt = conn.prepareStatement("INSERT INTO ingredient (name, description) "
-				+ "VALUES (?, ?);");
+				+ "VALUES (?, ?);", Statement.RETURN_GENERATED_KEYS);
 		pstmt.setString(1, ingredient.getName());
 		pstmt.setString(2, ingredient.getDescription());
 
-		
-			r = pstmt.executeUpdate();
-			if (r != 0){
-				result = "Ingredient " + ingredient.getName() + " successfully inserted into database";
-			}
-			else result = "Ingredient " + ingredient.getName() + " not created";
-			
-		} catch (SQLException e) {
-			System.out.println("Unable to insert " + ingredient.getName() + " into database");
-			e.printStackTrace();
+		r = pstmt.executeUpdate();
+		ResultSet rs = pstmt.getGeneratedKeys();
+		if (rs.next()){
+			Integer id = Integer.valueOf(rs.getString("GENERATED_KEY"));
+			ingredient.setId(id);
 		}
-		System.out.println(result);
-		return r;
+		if (r != 0){
+			System.out.println("Ingredient " + ingredient.getName() + " successfully inserted into database");
+		}
+		else {
+			System.out.println("Ingredient " + ingredient.getName() + " not created");
+		}
+
+		return ingredient;
 	}
 	
 
@@ -67,8 +67,6 @@ public class IngredientServiceImpl implements IngredientService {
 		}
 		ingredientList = ingredientList.substring(0, ingredientList.length()-1);
 		sql = "SELECT id, name FROM ingredient WHERE name IN (" + ingredientList + ");";
-
-//		System.out.println(sql);
 		
 		conn = manager.getConnection();
 		List<Map<String, Object>> ingredientMapList = manager.mapListQuery(conn, sql);
@@ -78,19 +76,31 @@ public class IngredientServiceImpl implements IngredientService {
 	}
 
 
-	public int updateIngredient(Ingredient ingredient) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateIngredient(Ingredient ingredient) throws SQLException {
+
+		conn = manager.getConnection();
+		int r = 0;
+
+		pstmt = conn.prepareStatement("UPDATE ingredient SET name = ?, description = ? WHERE id = ?");
+		pstmt.setString(1, ingredient.getName());
+		pstmt.setString(2, ingredient.getDescription());
+		pstmt.setInt(3, ingredient.getId());
+
+		r = pstmt.executeUpdate();
+		if (r != 0){
+			System.out.println("Ingredient " + ingredient.getName() + " successfully updated in database");
+		}
+		else {
+			System.out.println("Ingredient " + ingredient.getName() + " not updated");
+		}
+		return r;
 	}
 
 
 	public int deleteIngredient(Integer id) throws SQLException {
 		int result = -1;
 
-		conn = manager.getConnection();
-		pstmt = conn.prepareStatement("DELETE FROM ingredient WHERE id = ?");
-		pstmt.setInt(1, id);
-		result = pstmt.executeUpdate();
+		result = DbCommonFunctions.deleteEntity("ingredient", id);
 		if (result != -1){
 			System.out.println("Successfully removed ingredient with id " + id);
 		}
@@ -99,6 +109,14 @@ public class IngredientServiceImpl implements IngredientService {
 		}
 		
 		return result;
+	}
+
+
+	public Ingredient getIngredientById(Integer id) {
+		Map<String, String> constraints = new HashMap<String, String>();
+		constraints.put("id", id.toString());
+		
+		return (Ingredient) manager.retrieveSingleEntity(constraints, Ingredient.class);
 	}
 	
 	

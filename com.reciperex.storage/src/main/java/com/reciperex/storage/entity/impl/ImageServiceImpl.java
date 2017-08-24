@@ -2,25 +2,22 @@ package com.reciperex.storage.entity.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.commons.dbutils.QueryRunner;
-import org.json.simple.parser.JSONParser;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reciperex.model.Image;
 import com.reciperex.storage.entity.ImageService;
 import com.reciperex.storage.service.DatabaseConfig;
 import com.reciperex.storage.service.DatabaseManager;
+import com.reciperex.storage.service.DbCommonFunctions;
 import com.reciperex.storage.service.SQLBuilder;
 
 public class ImageServiceImpl implements ImageService{
 
 	DatabaseConfig config = new DatabaseConfig();
-//	QueryRunner queryRunner = new QueryRunner();
-//	ObjectMapper mapper = new ObjectMapper();
-//	JSONParser parser = new JSONParser();
 	DatabaseManager manager = new DatabaseManager();
 	
 	Connection conn = null;
@@ -33,51 +30,76 @@ public class ImageServiceImpl implements ImageService{
 	}
 	
 	
-	public int insertNewImage(Image image){
-		String result = null;
+	public Image insertNewImage(Image image) throws SQLException{
+
 		conn = manager.getConnection();
 		int r = 0;
-		try {
-			pstmt = conn.prepareStatement("INSERT INTO image (imagePath , text, recipeId, userId) "
-					+ "VALUES (?, ?, ?, ?);");
-			pstmt.setString(1, SQLBuilder.toSQLString(image.getImagePath()));
-			pstmt.setString(2, SQLBuilder.toSQLString(image.getImageText()));
-			if (image.getRecipeId() != null){
-				pstmt.setInt(3, image.getRecipeId());
-			}
-			else pstmt.setNull(3, java.sql.Types.INTEGER);
-			if (image.getUserId() != null){
-				pstmt.setInt(4, image.getUserId());
-			}
-			else pstmt.setNull(4, java.sql.Types.INTEGER);
-			r = pstmt.executeUpdate();
-			if (r != 0){
-				result = "Image at " + image.getImagePath() + " successfully inserted into database";
-			}
-			else result = "Image not created";
-			
-		} catch (SQLException e) {
-			System.out.println("Unable to insert image into database");
-			e.printStackTrace();
+		pstmt = conn.prepareStatement("INSERT INTO image (imagePath , text, recipeId, userId) "
+					+ "VALUES (?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+		pstmt.setString(1, SQLBuilder.toSQLString(image.getImagePath()));
+		pstmt.setString(2, SQLBuilder.toSQLString(image.getText()));
+		if (image.getRecipeId() != null){
+			pstmt.setInt(3, image.getRecipeId());
 		}
-		System.out.println(result);
+		else pstmt.setNull(3, java.sql.Types.INTEGER);
+		if (image.getUserId() != null){
+			pstmt.setInt(4, image.getUserId());
+		}
+		else pstmt.setNull(4, java.sql.Types.INTEGER);
+		
+		r = pstmt.executeUpdate();
+		ResultSet rs = pstmt.getGeneratedKeys();
+		if (rs.next()){
+			Integer id = Integer.valueOf(rs.getString("GENERATED_KEY"));
+			image.setId(id);
+		}
+		if (r != 0){
+			System.out.println("Image at " + image.getImagePath() + " successfully inserted into database");
+		}
+		else {
+			System.out.println("Image not created");
+		}
+		
+		return image;
+	}
+
+
+	public int updateImage(Image image) throws SQLException {
+
+		conn = manager.getConnection();
+		int r = 0;
+		pstmt = conn.prepareStatement("UPDATE image SET imagePath = ?, text = ?, recipeId = ?, "
+				+ "userId = ? WHERE id = ?");
+		pstmt.setString(1, SQLBuilder.toSQLString(image.getImagePath()));
+		pstmt.setString(2, SQLBuilder.toSQLString(image.getText()));
+		pstmt.setInt(3, image.getId());
+		if (image.getRecipeId() != null){
+			pstmt.setInt(3, image.getRecipeId());
+		}
+		else pstmt.setNull(3, java.sql.Types.INTEGER);
+		if (image.getUserId() != null){
+			pstmt.setInt(4, image.getUserId());
+		}
+		else pstmt.setNull(4, java.sql.Types.INTEGER);
+		pstmt.setInt(5, image.getId());
+		
+		r = pstmt.executeUpdate();
+		if (r != 0){
+			System.out.println("Image at " + image.getImagePath() + " successfully updated in database");
+		}
+		else {
+			System.out.println("Image not updated");
+		}
+			
 		return r;
 	}
 
 
-	public int updateImage(Image image) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
 	public int deleteImage(Integer id) throws SQLException {
+		
 		int result = -1;
 
-		conn = manager.getConnection();
-		pstmt = conn.prepareStatement("DELETE FROM image WHERE id = ?");
-		pstmt.setInt(1, id);
-		result = pstmt.executeUpdate();
+		result = DbCommonFunctions.deleteEntity("image", id);
 		if (result != -1){
 			System.out.println("Successfully removed image with id " + id);
 		}
@@ -86,6 +108,14 @@ public class ImageServiceImpl implements ImageService{
 		}
 		
 		return result;
+	}
+
+
+	public Image getImageById(Integer id) {
+		Map<String, String> constraints = new HashMap<String, String>();
+		constraints.put("id", id.toString());
+		
+		return (Image) manager.retrieveSingleEntity(constraints, Image.class);
 	}
 	
 }

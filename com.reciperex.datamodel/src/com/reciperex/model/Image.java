@@ -6,7 +6,7 @@ public class Image {
 	private String imagePath;
 	private Integer recipeId;
 	private Integer userId;
-	private String imageText;
+	private String text;
 	
 	public Image(){
 		
@@ -16,13 +16,13 @@ public class Image {
 		super();
 		this.imagePath = imagePath;
 		this.recipeId = recipeId;
-		this.imageText = imageText;
+		this.text = imageText;
 	}
 	
-	public Integer getImageId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setImageId(Integer imageId) {
+	public void setId(Integer imageId) {
 		this.id = imageId;
 	}
 	
@@ -40,11 +40,11 @@ public class Image {
 		this.recipeId = recipeId;
 	}
 	
-	public String getImageText() {
-		return imageText;
+	public String getText() {
+		return text;
 	}
-	public void setImageText(String imageText) {
-		this.imageText = imageText;
+	public void setText(String imageText) {
+		this.text = imageText;
 	}
 	
 	public Integer getUserId() {

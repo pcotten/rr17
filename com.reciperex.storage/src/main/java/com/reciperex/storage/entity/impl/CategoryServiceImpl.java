@@ -2,24 +2,22 @@ package com.reciperex.storage.entity.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.reciperex.model.Category;
-import com.reciperex.model.User;
 import com.reciperex.storage.entity.CategoryService;
 import com.reciperex.storage.service.DatabaseConfig;
 import com.reciperex.storage.service.DatabaseManager;
+import com.reciperex.storage.service.DbCommonFunctions;
 import com.reciperex.storage.service.SQLBuilder;
 
 public class CategoryServiceImpl implements CategoryService {
 	
 	DatabaseConfig config = new DatabaseConfig();
-//	QueryRunner queryRunner = new QueryRunner();
-//	ObjectMapper mapper = new ObjectMapper();
-//	JSONParser parser = new JSONParser();
 	DatabaseManager manager = new DatabaseManager();
 	
 	Connection conn = null;
@@ -31,51 +29,48 @@ public class CategoryServiceImpl implements CategoryService {
 		
 	}
 
-	public int insertNewCategory(Category category){
+	public Category insertNewCategory(Category category) throws SQLException{
+		
 		conn = manager.getConnection();
 		int r = 0;
-		try {
-			pstmt = conn.prepareStatement("INSERT INTO category (name, description) "
-					+ "VALUES (?, ?);");
-			pstmt.setString(1, category.getName());
-			pstmt.setString(2, category.getDescription());
-	
-			r = pstmt.executeUpdate();
-			if (r != 0){
-				System.out.println("Category '" + category.getName() + "' successfully inserted into database");
-			}
-			else {
-				System.out.println("Category '" + category.getName() + "' not created");
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("Unable to insert category '" + category.getName() + "' into database");
-			e.printStackTrace();
+		pstmt = conn.prepareStatement("INSERT INTO category (name, description) "
+				+ "VALUES (?, ?);", Statement.RETURN_GENERATED_KEYS);
+		pstmt.setString(1, category.getName());
+		pstmt.setString(2, category.getDescription());
+
+		r = pstmt.executeUpdate();
+		ResultSet rs = pstmt.getGeneratedKeys();
+		if (rs.next()){
+			Integer id = Integer.valueOf(rs.getString("GENERATED_KEY"));
+			category.setId(id);
 		}
-		return r;
+		if (r != 0){
+			System.out.println("Category '" + category.getName() + "' successfully inserted into database");
+		}
+		else {
+			System.out.println("Category '" + category.getName() + "' not created");
+		}
+
+		return category;
 	}
 	
-	public int updateCategory(Category category){
+	public int updateCategory(Category category) throws SQLException{
 		conn = manager.getConnection();
 		int r = 0;
-		try {
-			
-			pstmt = conn.prepareStatement("UPDATE category SET name = ?, description = ? WHERE id = ?");
-			pstmt.setString(1, category.getName());
-			pstmt.setString(2, category.getDescription());
-			pstmt.setInt(3, category.getId());
-			
-			r = pstmt.executeUpdate();
-			if (r != 0){
-				System.out.println("Category '" + category.getName() + "' successfully updated in database");
-			}
-			else {
-				System.out.println("Category '" + category.getName() + "' not updated");
-			}
-		} catch (SQLException e){
-			System.out.println("Unable to update category '" + category.getName() + "' in database");
-			e.printStackTrace();
+
+		pstmt = conn.prepareStatement("UPDATE category SET name = ?, description = ? WHERE id = ?");
+		pstmt.setString(1, category.getName());
+		pstmt.setString(2, category.getDescription());
+		pstmt.setInt(3, category.getId());
+		
+		r = pstmt.executeUpdate();
+		if (r != 0){
+			System.out.println("Category '" + category.getName() + "' successfully updated in database");
 		}
+		else {
+			System.out.println("Category '" + category.getName() + "' not updated");
+		}
+
 		return r;
 	}
 	
@@ -83,10 +78,7 @@ public class CategoryServiceImpl implements CategoryService {
 		
 		int result = -1;
 
-		conn = manager.getConnection();
-		pstmt = conn.prepareStatement("DELETE FROM category WHERE id = ?");
-		pstmt.setInt(1, id);
-		result = pstmt.executeUpdate();
+		result = DbCommonFunctions.deleteEntity("category", id);
 		if (result != -1){
 			System.out.println("Successfully removed category with id " + id);
 		}
@@ -98,8 +90,10 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	public Category getCategoryByName(String name){
+		
 		Map<String, String> constraints = new HashMap<String, String>();
 		constraints.put("name", SQLBuilder.toSQLString(name));
+		
 		return (Category) manager.retrieveSingleEntity(constraints, Category.class);
 
 	}

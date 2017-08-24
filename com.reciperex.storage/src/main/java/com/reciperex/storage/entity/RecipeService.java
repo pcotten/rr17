@@ -6,9 +6,9 @@ import com.reciperex.model.Recipe;
 
 public interface RecipeService {
 
-	public int insertNewRecipe(Recipe recipe, Integer userId);
+	public Recipe insertNewRecipe(Recipe recipe, Integer userId) throws SQLException;
 	
-	public int updateRecipe(Recipe recipe);
+	public int updateRecipe(Recipe recipe) throws SQLException;
 	
 	public int deleteRecipe(Integer id) throws SQLException;
 

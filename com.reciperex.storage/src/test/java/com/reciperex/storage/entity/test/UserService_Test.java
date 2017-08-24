@@ -77,7 +77,7 @@ public class UserService_Test {
 
 		profilePic = new Image();
 		profilePic.setImagePath("file:///c:/Path/To/Pic");
-		profilePic.setImageText("Profile picture text");
+		profilePic.setText("Profile picture text");
 		
 		recipe = new Recipe();
 		recipe.setTitle("Test Recipe");
@@ -118,9 +118,8 @@ public class UserService_Test {
 		int result = 0;
 		
 		// Test create operation
-		result = userService.insertNewUser(user);
-		Assert.assertTrue(result == 1);
-		
+		user = userService.insertNewUser(user);
+		Assert.assertTrue(user.getId() != null); 
 		user = userService.getUserByUsername(user.getUsername());
 		
 		// Set up internal references to entities for deletion test
