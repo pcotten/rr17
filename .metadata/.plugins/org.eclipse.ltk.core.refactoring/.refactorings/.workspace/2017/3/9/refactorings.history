@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;RecipeRex&apos; to &apos;com.reciperex&apos;" description="Rename resource &apos;RecipeRex&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/RecipeRex" name="com.reciperex" stamp="1488343223068" updateReferences="true"/>
-</session>
