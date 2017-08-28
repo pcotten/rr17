@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.reciperex.model.Ingredient;
 import com.reciperex.model.Instruction;
 import com.reciperex.model.Recipe;
 import com.reciperex.storage.entity.InstructionService;

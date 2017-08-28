@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,7 +40,32 @@ public class CommentService_Test {
 	public void init(){
 		timestamp = LocalDate.now();
 		user = userService.getUserByUsername("pcotten");
-		recipe = recipeService.getRecipeById(15);
+		
+		recipe = new Recipe();
+		recipe.setTitle("Test Recipe");
+		recipe.setOwner("testUser1");
+		recipe.setAttributedTo("unknown");
+		recipe.setDescription("This is the best chocolate cake recipe I have found to date");
+		recipe.setOvenTemp(350);
+		recipe.setAttributedTo("Unknown");
+		recipe.setNumberOfServings(12);
+		recipe.setCookTime(30);
+		recipe.setCookTimeUnit("minutes");
+		recipe.setPrepTime(30);
+		recipe.setPrepTimeUnit("minutes");
+		Map<String, Object> quantityMap = new HashMap<String, Object>();
+		quantityMap.put("quantity", 1f);
+		quantityMap.put("quantityUnit", "teaspoon");
+		recipe.getIngredients().put("salt", quantityMap);
+		recipe.getInstructions().put(1, "Do this.");
+		
+		try {
+			recipe = recipeService.insertNewRecipe(recipe, 1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		manager = new DatabaseManager();
 		comment = new Comment();
 		comment.setText("TestComment");
@@ -85,5 +113,11 @@ public class CommentService_Test {
 		assertTrue(rs.getInt("COUNT(*)") == 0);
 		
 	}
+	
+	@After
+	public void cleanup() throws SQLException{
+		recipeService.deleteRecipe(recipe.getId());
+	}
+	
 
 }

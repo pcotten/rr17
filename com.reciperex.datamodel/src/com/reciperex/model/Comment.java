@@ -2,7 +2,6 @@ package com.reciperex.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Comment {

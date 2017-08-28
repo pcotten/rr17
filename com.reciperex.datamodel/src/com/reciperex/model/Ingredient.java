@@ -8,7 +8,8 @@ public class Ingredient {
 	private Integer id;
 	private String name;
 	private String description;
-	private String quantity;
+	private Float quantity;
+	private String quantityUnit;
 	private List<Integer> categories;
 	
 	public Ingredient(){
@@ -46,12 +47,20 @@ public class Ingredient {
 		this.description = description;
 	}
 
-	public String getQuantity() {
+	public Float getQuantity() {
 		return quantity;
 	}
 	
-	public void setQuantity(String quantity) {
+	public void setQuantity(Float quantity) {
 		this.quantity = quantity;
+	}
+	
+	public String getQuantityUnit() {
+		return quantityUnit;
+	}
+
+	public void setQuantityUnit(String quantityUnit) {
+		this.quantityUnit = quantityUnit;
 	}
 
 	public List<Integer> getCategories() {

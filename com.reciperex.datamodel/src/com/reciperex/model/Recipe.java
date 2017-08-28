@@ -15,13 +15,16 @@ public class Recipe {
 	private String attributedTo;
 	private Integer numberOfServings;
 	private Integer ovenTemp;
-	private String servingSize;
-	private String cookTime;
-	private String prepTime;
+	private Integer servingSize;
+	private String servingSizeUnit;
+	private Integer cookTime;
+	private String cookTimeUnit;
+	private Integer prepTime;
+	private String prepTimeUnit;
 	private Integer rating;
 	private Date lastPrepared;
 	
-	private Map<String, String> ingredients;  // name, quantity
+	private Map<String, Map<String, Object>> ingredients;  // name, quantity, quantityUnit
 	private Map<Integer, String> instructions; // orderIndex, text
 	private List<String> images;
 	private List<String> categories;
@@ -37,7 +40,7 @@ public class Recipe {
 	}
 	
 	public void init(){
-		this.ingredients = new HashMap<String, String>();
+		this.ingredients = new HashMap<String, Map<String, Object>>();
 		this.instructions = new HashMap<Integer, String>();
 		this.images = new ArrayList<String>();
 		this.categories = new ArrayList<String>();
@@ -79,10 +82,10 @@ public class Recipe {
 		this.ovenTemp = ovenTemp;
 	}
 	
-	public Map<String, String> getIngredients() {
+	public Map<String, Map<String, Object>> getIngredients() {
 		return ingredients;
 	}
-	public void setIngredients(Map<String, String> ingredients) {
+	public void setIngredients(Map<String, Map<String, Object>> ingredients) {
 		this.ingredients = ingredients;
 	}
 
@@ -99,7 +102,6 @@ public class Recipe {
 	public void setImages(List<String> images) {
 		this.images = images;
 	}
-
 
 	public String getOwner() {
 		return owner;
@@ -125,27 +127,27 @@ public class Recipe {
 		this.numberOfServings = numberOfServings;
 	}
 
-	public String getServingSize() {
+	public Integer getServingSize() {
 		return servingSize;
 	}
 
-	public void setServingSize(String servingSize) {
+	public void setServingSize(Integer servingSize) {
 		this.servingSize = servingSize;
 	}
 
-	public String getCookTime() {
+	public Integer getCookTime() {
 		return cookTime;
 	}
 
-	public void setCookTime(String cookTime) {
+	public void setCookTime(Integer cookTime) {
 		this.cookTime = cookTime;
 	}
 
-	public String getPrepTime() {
+	public Integer getPrepTime() {
 		return prepTime;
 	}
 
-	public void setPrepTime(String prepTime) {
+	public void setPrepTime(Integer prepTime) {
 		this.prepTime = prepTime;
 	}
 
@@ -171,6 +173,30 @@ public class Recipe {
 
 	public void setCategories(List<String> categories) {
 		this.categories = categories;
+	}
+
+	public String getServingSizeUnit() {
+		return servingSizeUnit;
+	}
+
+	public void setServingSizeUnit(String servingUnit) {
+		this.servingSizeUnit = servingUnit;
+	}
+
+	public String getCookTimeUnit() {
+		return cookTimeUnit;
+	}
+
+	public void setCookTimeUnit(String cookTimeUnit) {
+		this.cookTimeUnit = cookTimeUnit;
+	}
+
+	public String getPrepTimeUnit() {
+		return prepTimeUnit;
+	}
+
+	public void setPrepTimeUnit(String prepTimeUnit) {
+		this.prepTimeUnit = prepTimeUnit;
 	}
 	
 	

@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -50,9 +52,13 @@ public class MealPlanService_Test {
 		recipe.setOvenTemp(350);
 		recipe.setAttributedTo("Unknown");
 		recipe.setNumberOfServings(12);
-		recipe.setCookTime("30 minutes");
-		recipe.setPrepTime("30 minutes");
-		recipe.getIngredients().put("salt", "1 teaspoon");
+		recipe.setCookTime(30);
+		recipe.setCookTimeUnit("minutes");
+		recipe.setPrepTime(30);
+		recipe.setPrepTimeUnit("minutes");
+		Map<String, Object> quantityMap = new HashMap<String, Object>();
+		quantityMap.put("quantity", 1f);
+		quantityMap.put("quantityUnit", "teaspoon");
 		recipe.getInstructions().put(1, "Do this.");
 
 		

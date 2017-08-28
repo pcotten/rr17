@@ -65,14 +65,17 @@ public class IngredientServiceImpl implements IngredientService {
 		for (String s : recipe.getIngredients().keySet()){
 			ingredientList += SQLBuilder.toSQLString(s) + ",";
 		}
-		ingredientList = ingredientList.substring(0, ingredientList.length()-1);
-		sql = "SELECT id, name FROM ingredient WHERE name IN (" + ingredientList + ");";
-		
-		conn = manager.getConnection();
-		List<Map<String, Object>> ingredientMapList = manager.mapListQuery(conn, sql);
-
-		System.out.println("MapList : " + ingredientMapList);
-		return ingredientMapList;
+		if (ingredientList.length() > 0 ){
+			ingredientList = ingredientList.substring(0, ingredientList.length()-1);
+			sql = "SELECT id, name FROM ingredient WHERE name IN (" + ingredientList + ");";
+			
+			conn = manager.getConnection();
+			List<Map<String, Object>> ingredientMapList = manager.mapListQuery(conn, sql);
+	
+			System.out.println("MapList : " + ingredientMapList);
+			return ingredientMapList;
+		}
+		return null;
 	}
 
 

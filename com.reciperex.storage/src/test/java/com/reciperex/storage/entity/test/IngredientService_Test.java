@@ -29,7 +29,8 @@ public class IngredientService_Test {
 		
 		ingredient.setName("TestIngredient");
 		ingredient.setDescription("Test description");
-		ingredient.setQuantity("3 bits");
+		ingredient.setQuantity(3f);
+		ingredient.setQuantityUnit("bits");
 		
 	}
 	
@@ -48,7 +49,8 @@ public class IngredientService_Test {
 		// Test update operation
 		
 		ingredient.setDescription("Changed description");
-		ingredient.setQuantity("1 shnarf");
+		ingredient.setQuantity(2f);
+		ingredient.setQuantityUnit("schnarfs");
 		
 		result = ingredientService.updateIngredient(ingredient);
 		assertTrue(result == 1);
